@@ -13,4 +13,9 @@ class DefaultController extends AbstractController
     {
         return $this->render('base.html.twig');
     }
+     #[Route('/api/login', name: 'app_default' , defaults : [ 'reactRouting' => null ]  )]
+     public function login()
+     {
+         return $this->render('base.html.twig');
+     }
 }

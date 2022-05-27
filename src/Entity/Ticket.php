@@ -2,29 +2,40 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TicketRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TicketRepository::class)]
+//#[ApiResource()]
 class Ticket
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    //#[Groups([])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    //#[Groups([])]
     private $label;
 
     #[ORM\Column(type: 'string', length: 500)]
+    //#[Groups([])]
     private $taskDescription;
 
     #[ORM\Column(type: 'date')]
+    //#[Groups([])]
     private $deadline;
 
     #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'tickets')]
     #[ORM\JoinColumn(nullable: false)]
+    //#[Groups([])]
     private $user;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $state;
 
     public function getId(): ?int
     {
@@ -75,6 +86,18 @@ class Ticket
     public function setUser(?user $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(string $state): self
+    {
+        $this->state = $state;
 
         return $this;
     }
