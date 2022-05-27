@@ -12,3 +12,33 @@ PHP message: [critical] Uncaught PHP Exception LogicException: "You cannot use t
 2022/05/27 13:02:23 [error] 30#30: *2 FastCGI sent in stderr: "PHP message: [info] Matched route "app_default"" while reading response header from upstream, client: 172.21.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:84", referrer: "http://localhost:84/"
 2022/05/27 13:02:34 [error] 30#30: *2 FastCGI sent in stderr: "PHP message: [info] Matched route "app_default"" while reading response header from upstream, client: 172.21.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:84"
 2022/05/27 13:02:34 [error] 32#32: *12 FastCGI sent in stderr: "PHP message: [info] Matched route "app_default"" while reading response header from upstream, client: 172.21.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:84", referrer: "http://localhost:84/"
+2022/05/27 13:53:31 [error] 33#33: *17 FastCGI sent in stderr: "PHP message: [info] Matched route "app_default".
+PHP message: [debug] Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure".
+PHP message: [debug] Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ValidateRequestListener::onKernelRequest".
+PHP message: [debug] Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onKernelRequest".
+PHP message: [debug] Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::setDefaultLocale".
+PHP message: [debug] Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest".
+PHP message: [debug] Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelRequest".
+PHP message: [debug] Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleAwareListener::onKernelRequest".
+PHP message: [debug] Notified event "kernel.controller_arguments" to listener "Symfony\Component\HttpKernel\EventListener\ErrorListener::onControllerArguments".
+PHP message: [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse".
+PHP message: [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ErrorListener::removeCspHeader".
+PHP message: [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\DisallowRobotsIndexingListener::onResponse".
+PHP message: [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onKernelResponse".
+PHP message: [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse".
+PHP messa
+2022/05/27 13:53:31 [error] 36#36: *18 FastCGI sent in stderr: "PHP message: [info] Matched route "app_default".
+PHP message: [debug] Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure".
+PHP message: [debug] Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ValidateRequestListener::onKernelRequest".
+PHP message: [debug] Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onKernelRequest".
+PHP message: [debug] Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::setDefaultLocale".
+PHP message: [debug] Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest".
+PHP message: [debug] Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelRequest".
+PHP message: [debug] Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleAwareListener::onKernelRequest".
+PHP message: [debug] Notified event "kernel.controller_arguments" to listener "Symfony\Component\HttpKernel\EventListener\ErrorListener::onControllerArguments".
+PHP message: [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse".
+PHP message: [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ErrorListener::removeCspHeader".
+PHP message: [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\DisallowRobotsIndexingListener::onResponse".
+PHP message: [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onKernelResponse".
+PHP message: [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse".
+PHP messa
