@@ -1,13 +1,16 @@
 import React from 'react'
 import { Routes , Route } from 'react-router-dom'
-import Home from './modules/Home'
+import Login from './modules/Auth/pages/Login'
+
 
 function RoutesPage() {
+  // si autoriser ( user exist ) alors base page else stay in login page 
   return (
     <Routes>
+       
         <Route
             path="/"
-            element={<Home/>}
+            element={<Login/>}
         />  
     </Routes>
   )
