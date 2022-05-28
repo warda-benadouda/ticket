@@ -11,27 +11,64 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: DepartementRepository::class)]
 
-//#[ApiResource()]
+#[ApiResource(
+    collectionOperations: [
+        'get' => [
+            // "security" => "is_granted('LIST', object)",
+            "normalization_context" => [
+                "groups" => ["departements:get"],
+            ]
+        ],
+        'post' => [
+            "security_post_denormalize" => "is_granted('CREATE', object)",
+            "normalization_context" => [
+                "groups" => ["departements:get"],
+            ],
+            "denormalization_context" => [
+                "groups" => ["departement:post"],
+            ],
+        ]
+    ],
+    itemOperations: [
+    'get' => [
+        "security" => "is_granted('VIEW', object)",
+        "normalization_context" => [
+            "groups" => ["departement:get"],
+        ],
+    ],
+    'put' => [
+        "security" => "is_granted('EDIT', object) ",
+        "normalization_context" => [
+            "groups" => ["departement:get"],
+        ],
+        "denormalization_context" => [
+            "groups" => ["departement:put"],
+        ],
+    ],
+    'delete' => [
+        "security" => "is_granted('DELETE', object) ",
+    ]],
+)]
 
 class Departement
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    //#[Groups([])]
+    #[Groups([ "departement:get"  ])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    //#[Groups([])]
+    #[Groups([ "departements:get" , "departement:get" , "departement:post" , "departement:put" ])]
     private $name;
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'departements')]
     #[ORM\JoinColumn(nullable: false)]
-    //#[Groups([])]
+    #[Groups([ "departements:get" , "departement:get" , "departement:post" , "departement:put" ])]
     private $company;
 
     #[ORM\OneToMany(mappedBy: 'departement', targetEntity: User::class, orphanRemoval: true)]
-    //#[Groups([])]
+    
     private $users;
 
     public function __construct()

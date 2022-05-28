@@ -10,25 +10,61 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
-//#[ApiResource()]
+#[ApiResource(
+    collectionOperations: [
+        'get' => [
+            // "security" => "is_granted('LIST', object)",
+            "normalization_context" => [
+                "groups" => ["companies:get"],
+            ]
+        ],
+        'post' => [
+            "security_post_denormalize" => "is_granted('CREATE', object)",
+            "normalization_context" => [
+                "groups" => ["companies:get"],
+            ],
+            "denormalization_context" => [
+                "groups" => ["company:post"],
+            ],
+        ]
+    ],
+    itemOperations: [
+    'get' => [
+        "security" => "is_granted('VIEW', object)",
+        "normalization_context" => [
+            "groups" => ["company:get"],
+        ],
+    ],
+    'put' => [
+        "security" => "is_granted('EDIT', object) ",
+        "normalization_context" => [
+            "groups" => ["company:get"],
+        ],
+        "denormalization_context" => [
+            "groups" => ["company:put"],
+        ],
+    ],
+    'delete' => [
+        "security" => "is_granted('DELETE', object) ",
+    ]],
+)]
 class Company
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    //#[Groups([])]
+    #[Groups([ "company:get"  ])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    //#[Groups([])]
+    #[Groups([ "companies:get" , "company:get" , "company:post" , "company:put" ])]
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]
-    //#[Groups([])]
+    #[Groups([ "companies:get" , "company:get" , "company:post" , "company:put" ])]
     private $description;
 
     #[ORM\OneToMany(mappedBy: 'company', targetEntity: Departement::class, orphanRemoval: true)]
-    //#[Groups([])]
     private $departements;
 
     public function __construct()

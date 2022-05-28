@@ -1,3 +1,9 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+symfony_default_page:
+  path: /{reactRouting}
+  controller: App\Controller\DefaultController::index
+  defaults: {reactRouting: null}
+  requirements:
+    reactRouting: "(?!(api)).*"

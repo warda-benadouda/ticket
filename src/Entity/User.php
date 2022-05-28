@@ -13,41 +13,80 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-//#[ApiResource()]
+#[ApiResource(
+    collectionOperations: [
+        'get' => [
+            // "security" => "is_granted('LIST', object)",
+            "normalization_context" => [
+                "groups" => ["users:get"],
+            ]
+        ],
+        'post' => [
+            "security_post_denormalize" => "is_granted('CREATE', object)",
+            "normalization_context" => [
+                "groups" => ["users:get"],
+            ],
+            "denormalization_context" => [
+                "groups" => ["user:post"],
+            ],
+        ]
+    ],
+    itemOperations: [
+    'get' => [
+        "security" => "is_granted('VIEW', object)",
+        "normalization_context" => [
+            "groups" => ["user:get"],
+        ],
+    ],
+    'put' => [
+        "security" => "is_granted('EDIT', object) ",
+        "normalization_context" => [
+            "groups" => ["user:get"],
+        ],
+        "denormalization_context" => [
+            "groups" => ["user:put"],
+        ],
+    ],
+    'delete' => [
+        "security" => "is_granted('DELETE', object) ",
+    ]],
+)]
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    //#[Groups([])]
+    #[Groups(["user:get"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    //#[Groups([])]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post"])]
     private $firstName;
 
     #[ORM\Column(type: 'string', length: 255)]
-    //#[Groups([])]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post"])]
     private $lastName;
 
     #[ORM\Column(type: 'json')]
-    //#[Groups([])]
+    #[Groups(["user:get", "users:post", "user:put"])]
     private $roles = [];
 
     #[ORM\ManyToOne(targetEntity: Departement::class, inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: false)]
-    //#[Groups([])]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post"])]
     private $departement;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Ticket::class, orphanRemoval: true)]
-    //#[Groups([])]
+    
     private $tickets;
 
     #[ORM\Column(type: 'string', length: 255 , unique : true)]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post"])]
     private $email;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups([  "user:put" , "user:post"])]
     private $password;
 
     public function __construct()
