@@ -1,6 +1,7 @@
 import { Formik, Form } from 'formik';
 import React from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import {NavLink, useNavigate} from "react-router-dom";
 import * as Yup from "yup";
 import Input from '../../../components/form/Input'
 import { Submit } from '../../../components/form/Submit';
@@ -9,19 +10,16 @@ import { login } from "../_redux/api";
 
 function Login() {
 
-
   const user = useSelector((state) => state.auth.user, shallowEqual);
   const  dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const saveLogin = (values, setStatus, setSubmitting) => {
 
- 
-
-    console.log(user , "user login");
-  
      login(values.email, values.password)
      .then(({ data }) => {
-       dispatch(actions.loadUser(data));
+        dispatch(actions.loadUser(data));
+        navigate('/start');
     })
      .catch ( errors => {
        console.log( errors , "errors");
@@ -57,7 +55,7 @@ function Login() {
     >
       {({ errors, isSubmitting, submitForm }) => (
         <Form>
-          <div className="container">
+          <div className='container-fluid' style={{ backgroundColor : "#F8FAFB"}}>
             <div className="row">
               <div className="col-6">
                 <img src="/media/background-login.png" />
