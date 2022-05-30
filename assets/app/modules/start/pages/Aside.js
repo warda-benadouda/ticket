@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Col } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import SVG from "react-inlinesvg";
 import { Card } from '../../../components/Card';
 import { ToolBar } from '../../../components/ToolBar';
 import { Item } from '../../../components/Item';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Aside() {
+
+  const {user}= useSelector(state => state.auth.user );
+
+  console.log(user , "user");
 
   return (
 
