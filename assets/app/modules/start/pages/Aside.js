@@ -8,15 +8,6 @@ import { Item } from '../../../components/Item';
 
 function Aside() {
 
-  const Toolbar = () => (
-    <ToolBar>
-
-        <Item title={"Liste"}  tooltip={"Liste des tickets "} />
-        <Item title={"Ajouter"}  tooltip={" Ajouter des tickets"} />
-
-    </ToolBar>
-);
-
   return (
 
     <>
@@ -64,12 +55,6 @@ function Aside() {
              
          </div>
         
-      </div>
-
-      <div className="content">
-         <Card title={"Entreprises"}  toolbar={<Toolbar />} >
-  
-         </Card>
       </div>
     </>
 
