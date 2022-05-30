@@ -16,8 +16,11 @@ function RoutesPage() {
     
   return (
       <Routes>
+
           <Route path="*" element={<ErrorPage />} />
-              <Route element={<Layout/>}> 
+          <Route path="/" element={<Login/>} />
+
+          <Route element={<Layout/>}> 
                   <Route
                       path="/companies"
                       element={<Company/>}
@@ -31,14 +34,11 @@ function RoutesPage() {
                     element={<User/>}
                   /> 
                   <Route
-                    path="/tickets"
+                    path="tickets"
                     element={<Ticket/>}
                   /> 
-              </Route>
-          <Route
-              path="/"
-              element={<Login/>}
-              />
+          </Route>
+          
           {/* <Route
              path="*"
             element={<Navigate to="/" replace />}
