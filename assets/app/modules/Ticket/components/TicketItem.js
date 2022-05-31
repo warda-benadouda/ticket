@@ -53,7 +53,7 @@ function TicketItem({  ticket , index, setDeletedTicket} ) {
             />
 
             <IconButton
-                // onClick={() => setDeletedQuiz(quiz)}
+                onClick={() =>  setDeletedTicket(ticket)}
                 tooltip="Supprimer"
                 iconPath="/media/svg/Trash.svg"
             />
