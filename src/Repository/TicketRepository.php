@@ -39,6 +39,31 @@ class TicketRepository extends ServiceEntityRepository
         }
     }
 
+    public function getListeForSuperAdmin(array $filters = []) {
+
+        $queryBuilder =  $this->createQueryBuilder('t')
+            ->select('t');
+        
+        return $queryBuilder->getQuery()->getResult();     
+
+        // return $this->setQueryFilters($queryBuilder, $filters, $itemPerPage);
+    }
+
+
+    public function getListeForAdmin(int $userId, array $filters = []) {
+
+
+        $queryBuilder =  $this->createQueryBuilder('t')
+            ->select('t')
+            ->where('t.user = :userId ')
+            ->setParameter(':userId', $userId );
+
+        return $queryBuilder->getQuery()->getResult(); 
+        // return $this->setQueryFilters($queryBuilder, $filters, $itemPerPage);
+
+    }
+
+
 //    /**
 //     * @return Ticket[] Returns an array of Ticket objects
 //     */

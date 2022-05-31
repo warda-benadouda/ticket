@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Controller\Tickets\GetTicketsAction;
 use App\Repository\TicketRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -13,6 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     collectionOperations: [
         'get' => [
             // "security" => "is_granted('LIST', object)",
+            "controller" => GetTicketsAction::class,
             "normalization_context" => [
                 "groups" => ["tickets:get"],
             ]
@@ -67,7 +69,7 @@ class Ticket
     #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" ])]
     private $deadline;
 
-    #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'tickets')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'tickets')]
     #[ORM\JoinColumn(nullable: false)]
     #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" ])]
     private $user;

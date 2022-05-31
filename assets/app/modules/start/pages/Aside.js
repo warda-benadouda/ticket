@@ -9,9 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function Aside() {
 
-  const {user}= useSelector(state => state.auth.user );
-
-  console.log(user , "user");
+  const { user }= useSelector(state => state.auth.user);
+  let isSuperAdmin = user.roles.includes("ROLE_SUPER_ADMIN");
+  let isAdmin = user.roles.includes("ROLE_ADMIN");
 
   return (
 
@@ -19,7 +19,8 @@ function Aside() {
       <div className="sidebar">
          {/* <h1 className="">Logo</h1> */}
          <div className='pt-5'>
-             
+          { isSuperAdmin  &&  
+           < >
               <NavLink
                   
                     to="/companies"
@@ -48,6 +49,8 @@ function Aside() {
                 />
                 <span >Utilisateurs</span>
               </NavLink>
+           </>
+          }   
               <NavLink
                   to="/tickets"
                     >

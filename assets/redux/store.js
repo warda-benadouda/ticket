@@ -23,6 +23,6 @@ const store = configureStore({
 
 export const persistor = persistStore(store ,  middleware);
 
-// sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga);
 
 export default store;
