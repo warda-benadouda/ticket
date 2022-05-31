@@ -22,14 +22,14 @@ class GetTicketsAction  extends DefaultController
     public function __invoke(Request $request)
     {
 
-        // dump($this->getUser());
+    
         // dd("ici");
 
-        $user = 1;
+        $user = 28;
         $filters = [];
                
        
-        return $tickets = $this->ticketRepository->getListeForAdmin( 1, $filters);
+        return $tickets = $this->ticketRepository->getListeForAdmin( 28, $filters);
 
         //  if ($this->isGranted('ROLE_SUPER_ADMIN', $user)) {
 

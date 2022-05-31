@@ -10,6 +10,7 @@ import Ticket from './modules/Ticket/pages/Ticket'
 import User from './modules/User/pages/User'
 import ErrorPage from './ErrorPage';
 import Layout from './Layout';
+import TicketEdit from './modules/Ticket/components/TicketEdit';
 
 
 function RoutesPage() {
@@ -36,6 +37,10 @@ function RoutesPage() {
                   <Route
                     path="tickets"
                     element={<Ticket/>}
+                  /> 
+                  <Route
+                    path="tickets/edit"
+                    element={<TicketEdit/>}
                   /> 
           </Route>
           

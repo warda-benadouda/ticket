@@ -19,6 +19,7 @@ function TicketsList() {
     const dispatch = useDispatch();
     const tickets = useSelector(state => state.ticket.tickets);
 
+
     console.log(tickets , "tiiickets");
 
     useEffect(() => {
@@ -52,7 +53,7 @@ function TicketsList() {
                     <Th minwidth={150} >Tickets</Th>
                     <Th displayFrom="md" minwidth={120} >affecter a </Th>
                     <Th displayFrom="md" minwidth={120} >etat</Th>
-                    <Th minwidth={50} >actions</Th>
+                    <Th minwidth={50} className="text-center" >actions</Th>
                 </tr>
             </thead>
                 <tbody>
