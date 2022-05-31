@@ -18,6 +18,7 @@ function Login() {
 
      login(values.email, values.password)
      .then(({ data }) => {
+        dispatch(actions.login(data.token));
         dispatch(actions.loadUser(data));
         navigate('/tickets');
     })

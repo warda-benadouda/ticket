@@ -15,7 +15,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app/App';
 import { createRoot } from 'react-dom/client';
+import axios from "axios";
+import setupAxios from './redux/setupAxios';
+import store from './redux/store';
 
+setupAxios(axios, store);
 const container = document.getElementById('root');
 const root = createRoot(container); 
 root.render(<App  />);

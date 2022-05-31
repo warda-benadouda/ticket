@@ -7,18 +7,22 @@ import Input from "../../../components/form/Input";
 import { Submit } from "../../../components/form/Submit";
 import { useNavigate, useParams } from "react-router-dom";
 import { actions } from '../_redux/actions';
-import getTicket from '../_redux/api';
+import { getTicket } from '../_redux/api';
 
 function TicketEdit() {
 
     const navigate = useNavigate();
+    const [ ticket , setTicket ] = useState();
     let {id} =  useParams();
+
 
     const { user }= useSelector(state => state.auth.user);
 
     useEffect (() => {
-         //getcampaign
- 
+
+         getTicket(id)
+         .then( (response) => { console.log(response)})
+         .catch( (errors ) => console.log(errors))
     } , [])
 
     const initialValues = {
