@@ -40,7 +40,7 @@ function TicketsList() {
 
                 <div className='d-flex align-items-center'>
                    
-                    <button className="btn btn-sm btn-info" >
+                    <button className="btn btn-sm btn-danger" >
                         <i className="fa fa-search" aria-hidden="true" /> Recherche
                     </button>
 

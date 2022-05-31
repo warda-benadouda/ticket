@@ -18,8 +18,8 @@ function TicketDelete({ ticket, handleShow, show}) {
                       Annuler
                   </button>
                   <button
-                      className={`btn btn-primary ml-2`}
-                      onClick={() => duplication(true) }
+                      className={`btn btn-danger ml-2`}
+                      // onClick={() => }
                   >
                       Supprimer
                   </button>
