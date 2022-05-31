@@ -1,9 +1,23 @@
 import React from 'react'
 import {Button, Modal} from "react-bootstrap";
-
+import { useNavigate } from 'react-router-dom';
+import { deleteTicket } from '../_redux/api';
 
 
 function TicketDelete({ ticket, handleShow, show}) {
+
+    const navigate = useNavigate();
+
+    const deleteTicket = () => {
+        deleteTicket(ticket.id)
+        .then(response => {
+            navigate(`/tickets`)
+        })
+        .catch(errors => {
+
+        });
+    }
+
   return (
     <Modal show={show} onHide={() => handleShow(false)}>
             <Modal.Header>
@@ -19,7 +33,7 @@ function TicketDelete({ ticket, handleShow, show}) {
                   </button>
                   <button
                       className={`btn btn-danger ml-2`}
-                      // onClick={() => }
+                      onClick={() => deleteTicket()}
                   >
                       Supprimer
                   </button>

@@ -59,9 +59,6 @@ function TicketEdit() {
         deadline : (ticket?.taskDescription)?.split('T')[0], 
         user : ticket?.user?.name , 
         state :  ticket?.state,
-        departement : ''
-
-
     };
     const schema = Yup.object().shape({
          

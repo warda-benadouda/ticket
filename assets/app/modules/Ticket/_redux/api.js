@@ -51,3 +51,12 @@ export async function addTicket(ticket) {
   }
   return 'hydra:member' in data ? data["hydra:member"] : data;
 }
+
+export async function deleteTicket(id) {
+  const response = await axios.delete(`${URL}/${id}`);
+  const data = response.data;
+  if (response.status > 400) {
+    throw new Error(data.error)
+  }
+  return 'hydra:member' in data ? data["hydra:member"] : data;
+}
