@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     collectionOperations: [
         'get' => [
             // "security" => "is_granted('LIST', object)",
-            "controller" => GetTicketsAction::class,
+            // "controller" => GetTicketsAction::class,
             "normalization_context" => [
                 "groups" => ["tickets:get"],
             ]
@@ -54,19 +54,19 @@ class Ticket
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["ticket:get"])]
+    #[Groups(["ticket:get" , "tickets:get"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" ])]
+    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post"  , "users:get" ])]
     private $label;
 
     #[ORM\Column(type: 'string', length: 500)]
-    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" ])]
+    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" , "users:get"  ])]
     private $taskDescription;
 
     #[ORM\Column(type: 'date')]
-    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" ])]
+    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" , "users:get" ])]
     private $deadline;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'tickets')]
@@ -75,7 +75,7 @@ class Ticket
     private $user;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" ])]
+    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" , "users:get"  ])]
     private $state;
 
     public function getId(): ?int

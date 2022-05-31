@@ -4,9 +4,6 @@ import SVG from "react-inlinesvg";
 
 export const IconButton = ({ marginBtn = "m-1", disabled = '', onClick, size = "md", light = true, tooltip = null, iconPath = "/media/svg/Edit.svg", variant = "primary", className = "", ...props }) => {
 
-    console.log(" caaaaallled");
-
-
     const button = <button
         {...props}
         className={`${marginBtn} btn btn-icon btn-${size} btn-hover-light-${variant} btn-sm ${className} ${disabled} `}

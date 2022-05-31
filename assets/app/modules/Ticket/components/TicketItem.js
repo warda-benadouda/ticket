@@ -8,8 +8,25 @@ import { useNavigate } from 'react-router-dom';
 
 function TicketItem({  ticket , index, setDeletedTicket} ) {
 
-   const { label , taskDescription , deadline , user , state} = ticket;
+   const { label , id , taskDescription , deadline , user , state} = ticket;
+   const { email , firstName , lastName } = user;
    const navigate = useNavigate();
+
+
+   const getState=( state) => {
+
+        switch(state) {
+            case "0" :
+                return "En attente"
+            case "1" :
+                return "En cours"
+            case "2" : 
+                return "Terminé"
+            default :
+                 return "/"
+        }
+   }
+
   return (
     <tr>
         <Td className="" displayFrom={"sm"}>
@@ -33,7 +50,7 @@ function TicketItem({  ticket , index, setDeletedTicket} ) {
                 to={`#`}
                 className={`text-dark-75 font-weight-bolder d-block font-size-lg text-dark `}
             >
-               user
+              {firstName +  lastName }
             </NavLink>
         </Td>
         <Td>
@@ -41,13 +58,13 @@ function TicketItem({  ticket , index, setDeletedTicket} ) {
                 to={`#`}
                 className={`text-dark-75 font-weight-bolder d-block font-size-lg  text-dark`}
             >
-               etat
+              {getState(state)}
             </NavLink>
         </Td>
 
         <Td className="pr-0 text-center" >
             <IconButton
-                onClick={() => navigate('/tickets/edit')}
+                onClick={() => navigate(`/tickets/edit/${id}`)}
                 tooltip="Modifier"
                 src="/media/svg/Edit.svg"
             />

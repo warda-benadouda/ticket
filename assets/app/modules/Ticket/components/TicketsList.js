@@ -6,27 +6,29 @@ import { Th } from '../../../components/table/Th';
 import { actions } from '../_redux/actions';
 import TicketDelete from './TicketDelete';
 import TicketItem from './TicketItem';
+import SVG from "react-inlinesvg";
 
 function TicketsList() {
 
-    const user = useSelector(state => state.auth.user);
-    
+    const {user } = useSelector(state => state.auth.user);
+    const { id } = user;
     const [deletedticket, setDeletedTicket] = useState(false);
-    // const [tickets , settickets] = useState([]);
-
     let filter = ""
 
     const dispatch = useDispatch();
     const tickets = useSelector(state => state.ticket.tickets);
 
 
-    console.log(tickets , "tiiickets");
-
     useEffect(() => {
-      
-        dispatch(actions.requestTickets(filter));
 
-    }, []);
+        user && 
+        user.roles.includes("ROLE_SUPER_ADMIN") ?  
+        dispatch(actions.requestSuperAdminTickets(filter))  
+        :
+        dispatch(actions.requestTickets(id ,filter));
+
+    }, [user]);
+
 
 
 
@@ -41,7 +43,11 @@ function TicketsList() {
                 <div className='d-flex align-items-center'>
                    
                     <button className="btn btn-sm btn-danger" >
-                        <i className="fa fa-search" aria-hidden="true" /> Recherche
+                        <SVG
+                            className="mr-2 "
+                            src={"/media/svg/Search.svg"}
+                        />
+                        <span className="text-dark">Recherche</span>
                     </button>
 
                 </div>

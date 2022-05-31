@@ -8,30 +8,32 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
 
+        case actionTypes.RequestSuperAdminTickets: {
+            return {
+                ...state.tickets,
+            };
+        }
+
         case actionTypes.RequestTickets: {
             return {
                 ...state.tickets,
-                errors: false,
             };
         }
 
         case actionTypes.SetTickets: {
             const { tickets } = action.payload;
-            let all = ('hydra:member' in tickets) ? tickets["hydra:member"] : tickets;
-
             return {
                 ...state,
-                tickets : all ,
+                tickets : tickets ,
 
+            };
+        }
+        case actionTypes.RequestTicket: {
+            return {
+                ...state,
             };
         }
         default:
             return state;
     }
 }
-
-
-//request tickets 
-//get one ticket 
-//update a ticket
-//delete a ticket 

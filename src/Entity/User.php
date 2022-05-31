@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -61,11 +62,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post"])]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post" , "tickets:get" ])]
     private $firstName;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post"])]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post" , "tickets:get" ])]
     private $lastName;
 
     #[ORM\Column(type: 'json')]
@@ -78,11 +79,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $departement;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Ticket::class, orphanRemoval: true)]
-    
+    #[ApiSubresource()]
+    #[Groups([  "users:get" ])]
     private $tickets;
 
     #[ORM\Column(type: 'string', length: 255 , unique : true)]
-    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post"])]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post" , "tickets:get" ])]
     private $email;
 
     #[ORM\Column(type: 'string', length: 255)]

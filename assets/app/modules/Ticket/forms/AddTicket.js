@@ -47,7 +47,7 @@ function AddTicket() {
                 <Input label="User" name="user" />
                 <Submit
                     onClick={submitForm}
-                    onReset={() => navigate(-1)}
+                    // onReset={() => navigate(-1)}
                     disabled={isSubmitting || errors.length}
                 />
             </Form>

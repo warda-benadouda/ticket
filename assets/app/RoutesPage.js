@@ -39,7 +39,7 @@ function RoutesPage() {
                     element={<Ticket/>}
                   /> 
                   <Route
-                    path="tickets/edit"
+                    path="tickets/edit/:id"
                     element={<TicketEdit/>}
                   /> 
           </Route>

@@ -5,11 +5,21 @@ import * as Yup from "yup";
 import { Card } from '../../../components/Card';
 import Input from "../../../components/form/Input";
 import { Submit } from "../../../components/form/Submit";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { actions } from '../_redux/actions';
+import getTicket from '../_redux/api';
 
 function TicketEdit() {
 
     const navigate = useNavigate();
+    let {id} =  useParams();
+
+    const { user }= useSelector(state => state.auth.user);
+
+    useEffect (() => {
+         //getcampaign
+ 
+    } , [])
 
     const initialValues = {
         label : '' ,
