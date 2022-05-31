@@ -55,20 +55,20 @@ class Departement
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups([ "departement:get"  ])]
+    #[Groups([ "departement:get" , "companies:get"  , "company:get"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "departements:get" , "departement:get" , "departement:post" , "departement:put" ])]
+    #[Groups([ "departements:get" , "departement:get" , "departement:post" , "departement:put" , "companies:get"  , "company:get"])]
     private $name;
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'departements')]
     #[ORM\JoinColumn(nullable: false)]
     #[Groups([ "departements:get" , "departement:get" , "departement:post" , "departement:put" ])]
     private $company;
-
-    #[ORM\OneToMany(mappedBy: 'departement', targetEntity: User::class, orphanRemoval: true)]
     
+    #[ORM\OneToMany(mappedBy: 'departement', targetEntity: User::class, orphanRemoval: true)]
+    #[Groups([  "departement:get" ])]
     private $users;
 
     public function __construct()
@@ -133,5 +133,8 @@ class Departement
         }
 
         return $this;
+    }
+    public function getValue():string {
+        return $this->getId();
     }
 }

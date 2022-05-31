@@ -10,7 +10,6 @@ export async function getSuperAdminTickets( filter) {
     if (response.status > 400) {
       throw new Error(data)
     }
-    // return data;
     return 'hydra:member' in data ? data["hydra:member"] : data;
 }
 
@@ -32,4 +31,23 @@ export async function getTicket(  id ) {
     throw new Error(data)
   }
   return data;
+}
+
+export async function updateTicket(  id , ticket) {
+
+  const response = await axios.put(`${URL}/${id}` , ticket );
+  const data = response.data;
+  if (response.status > 400) {
+    throw new Error(data)
+  }
+  return data;
+}
+
+export async function addTicket(ticket) {
+  const response = await axios.post(URL, ticket);
+  const data = response.data;
+  if (response.status > 400) {
+    throw new Error(data.error)
+  }
+  return 'hydra:member' in data ? data["hydra:member"] : data;
 }

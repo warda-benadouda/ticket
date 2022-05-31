@@ -62,11 +62,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post" , "tickets:get" ])]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post" , "tickets:get" , "ticket:get" ,  "departement:get"])]
     private $firstName;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post" , "tickets:get" ])]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post" , "tickets:get" , "ticket:get"  ,  "departement:get"])]
     private $lastName;
 
     #[ORM\Column(type: 'json')]
@@ -84,7 +84,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $tickets;
 
     #[ORM\Column(type: 'string', length: 255 , unique : true)]
-    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post" , "tickets:get" ])]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post" , "tickets:get" , "ticket:get"])]
     private $email;
 
     #[ORM\Column(type: 'string', length: 255)]

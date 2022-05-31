@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\CompanyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -65,6 +66,7 @@ class Company
     private $description;
 
     #[ORM\OneToMany(mappedBy: 'company', targetEntity: Departement::class, orphanRemoval: true)]
+    #[Groups([ "companies:get" , "company:get" ])]
     private $departements;
 
     public function __construct()
@@ -130,4 +132,8 @@ class Company
 
         return $this;
     }
+    public function getValue():string {
+        return $this->getId();
+    }
+
 }

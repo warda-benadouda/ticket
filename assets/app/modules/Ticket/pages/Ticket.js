@@ -4,7 +4,7 @@ import { Card } from '../../../components/Card'
 import { Item } from '../../../components/Item';
 import { ToolBar } from '../../../components/ToolBar';
 import TicketsList from '../components/TicketsList';
-import AddTicket from '../forms/AddTicket';
+import AddTicket from '../components/AddTicket';
 
 function Ticket() {
 

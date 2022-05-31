@@ -80,6 +80,7 @@ class Authenticator implements AuthenticationSuccessHandlerInterface
             "lastname" => $user->getLastName(),
             "email" => $user->getEmail(),
             "roles" => $user->getRoles(),
+            "companyId" => $user->getDepartement()->getCompany()->getValue()
         ];
     }
 }
