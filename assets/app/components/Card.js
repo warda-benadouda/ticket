@@ -3,7 +3,7 @@ import React from "react";
 export function Card({height="180px" , children, title, label, secondLabel, toolbar, className = "", subtitle, footer, ...props }) {
 
     return (
-        <div className={`col-xs-12 pt-5 pb-0 `} style={props.style}>
+        <div className={`col-xs-12 pt-5 pb-0 b-0 `} style={props.style}>
             <div className={`card card-custom ${className}`}   style={{ minHeight: height}}>
                 {/* begin::Header */}
                 {(title || toolbar || label) &&
