@@ -48,11 +48,11 @@ function TicketsList() {
         <Table>
             <thead>
                 <tr>
-                    <th className="pl-0" minWidth={50} />
-                    <Th minWidth={150} >Tickets</Th>
-                    <Th displayFrom="md" minWidth={120} >affecter a </Th>
-                    <Th displayFrom="md" minWidth={120} >etat</Th>
-                    <Th minWidth={50} >actions</Th>
+                    <th className="pl-0" minwidth={50} />
+                    <Th minwidth={150} >Tickets</Th>
+                    <Th displayFrom="md" minwidth={120} >affecter a </Th>
+                    <Th displayFrom="md" minwidth={120} >etat</Th>
+                    <Th minwidth={50} >actions</Th>
                 </tr>
             </thead>
                 <tbody>
