@@ -54,28 +54,28 @@ class Ticket
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["ticket:get" , "tickets:get"])]
+    #[Groups(["ticket:get" , "tickets:get" , "user:get"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post"  , "users:get" ])]
+    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post"  , "user:get" ])]
     private $label;
 
     #[ORM\Column(type: 'string', length: 500)]
-    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" , "users:get"  ])]
+    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" , "user:get"  ])]
     private $taskDescription;
 
     #[ORM\Column(type: 'date')]
-    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" , "users:get" ])]
+    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" , "user:get" ])]
     private $deadline;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'tickets')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" ])]
+    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post"  ])]
     private $user;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" , "users:get"  ])]
+    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" , "user:get"  ])]
     private $state;
 
     public function getId(): ?int

@@ -80,7 +80,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Ticket::class, orphanRemoval: true)]
     #[ApiSubresource()]
-    #[Groups([  "users:get" ])]
+    #[Groups([  "user:get" ])]
     private $tickets;
 
     #[ORM\Column(type: 'string', length: 255 , unique : true)]

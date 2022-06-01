@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const URL = `/api/tickets`; 
-export const ADMIN_URL = `/api/users/{id}/tickets`;
+export const ADMIN_URL = `/api/users/{id}`;
 
 export async function getSuperAdminTickets( filter) {
     let url =  URL + (filter ? filter : "")
@@ -14,9 +14,10 @@ export async function getSuperAdminTickets( filter) {
 }
 
 export async function getAdminTickets(  id , filter) {
-  let admurl =  ADMIN_URL + (filter ? filter : "")
-  const response = await axios.get( admurl.replace('{id}' , id ));
-  const data = response.data;
+  // let admurl =  ADMIN_URL + (filter ? filter : "")
+  const response = await axios.get( ADMIN_URL.replace('{id}' , id ));
+
+  const data = response.data.tickets;
   if (response.status > 400) {
     throw new Error(data)
   }
