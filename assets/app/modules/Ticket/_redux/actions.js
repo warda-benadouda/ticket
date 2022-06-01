@@ -22,4 +22,8 @@ export const actions = {
         type: actionTypes.SetTicket,
         payload: { ticket }
     }),
+    deleteTicket: (ticket) => ({
+        type: actionTypes.deleteTicket,
+        payload: { ticket }
+    }),
 }

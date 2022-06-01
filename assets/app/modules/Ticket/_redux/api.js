@@ -58,5 +58,5 @@ export async function deleteTicket(id) {
   if (response.status > 400) {
     throw new Error(data.error)
   }
-  return 'hydra:member' in data ? data["hydra:member"] : data;
+  return data;
 }

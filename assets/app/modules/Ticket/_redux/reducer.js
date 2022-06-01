@@ -33,6 +33,16 @@ export const reducer = (state = initialState, action) => {
                 ...state,
             };
         }
+        case actionTypes.deleteTicket: {
+
+            const { ticket } = action.payload;
+
+
+            return {
+                ...state,
+                tickets : state.tickets.filter( c => c['@id'] !== ticket['@id'])
+            };
+        }
         default:
             return state;
     }

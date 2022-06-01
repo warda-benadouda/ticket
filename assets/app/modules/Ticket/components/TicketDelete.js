@@ -2,19 +2,24 @@ import React from 'react'
 import {Button, Modal} from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 import { deleteTicket } from '../_redux/api';
+import {  useDispatch } from "react-redux";
+import { actions } from '../_redux/actions';
 
 
 function TicketDelete({ ticket, handleShow, show}) {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const deleteTicket = () => {
+    const TodeleteTicket = () => {
         deleteTicket(ticket.id)
         .then(response => {
+            dispatch(actions.deleteTicket(ticket))
             navigate(`/tickets`)
+            handleShow(false)
         })
         .catch(errors => {
-
+            console.log("errors" , errors)
         });
     }
 
@@ -33,7 +38,7 @@ function TicketDelete({ ticket, handleShow, show}) {
                   </button>
                   <button
                       className={`btn btn-danger ml-2`}
-                      onClick={() => deleteTicket()}
+                      onClick={() => TodeleteTicket()}
                   >
                       Supprimer
                   </button>
