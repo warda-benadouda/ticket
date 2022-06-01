@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     collectionOperations: [
         'get' => [
             // "security" => "is_granted('LIST', object)",
-            // "controller" => GetTicketsAction::class,
+            "controller" => GetTicketsAction::class,
             "normalization_context" => [
                 "groups" => ["tickets:get"],
             ]
@@ -78,6 +78,10 @@ class Ticket
     #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post" , "user:get"  ])]
     private $state;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'createdTickets')]
+    #[Groups([ "ticket:get" , "tickets:get" , "ticket:put" , "ticket:post"   ])]
+    private $createdBy;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -139,6 +143,18 @@ class Ticket
     public function setState(string $state): self
     {
         $this->state = $state;
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): self
+    {
+        $this->createdBy = $createdBy;
 
         return $this;
     }

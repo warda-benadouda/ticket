@@ -22,25 +22,22 @@ class GetTicketsAction  extends DefaultController
     public function __invoke(Request $request)
     {
 
-    
-        // dd("ici");
+        $user = $this->getUser();
 
-        $user = 28;
+        
         $filters = [];
                
-       
-        return $tickets = $this->ticketRepository->getListeForAdmin( 28, $filters);
 
-        //  if ($this->isGranted('ROLE_SUPER_ADMIN', $user)) {
+         if ($this->isGranted('ROLE_SUPER_ADMIN', $user)) {
 
-        //      $tickets = $this->ticketRepository->getListeForSuperAdmin($filters );
-        //      return $this->isGranted('LIST', $tickets) ? $tickets : throw $this->createAccessDeniedException();
+             $tickets = $this->ticketRepository->getListeForSuperAdmin($filters );
+             return $this->isGranted('LIST', $tickets) ? $tickets : throw $this->createAccessDeniedException();
 
 
-        //  } else  if ($this->isGranted('ROLE_ADMIN', $user)) {
+         } else  {
                
-        //     $tickets = $this->ticketRepository->getListeForAdmin( $user->getId(), $filters);
-        //     return $this->isGranted('LIST', $tickets) ? $tickets : throw $this->createAccessDeniedException();
-        // } 
+            $tickets = $this->ticketRepository->getListeForAdmin( $user->getId(), $filters);
+            return $this->isGranted('LIST', $tickets) ? $tickets : throw $this->createAccessDeniedException();
+        } 
     }
 }

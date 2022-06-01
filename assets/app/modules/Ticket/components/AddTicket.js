@@ -44,6 +44,7 @@ function AddTicket() {
       taskDescription : '',
       deadline : '' , 
       user : '' , 
+      createdBy : `/api/users/${user.id}`,
       state : '0',
 
   };

@@ -11,17 +11,14 @@ import { actions } from '../_redux/actions';
 
 function TicketItem({  ticket , index, setDeletedTicket , setDelivertask} ) {
 
-   const { label , id , taskDescription , deadline ,  state} = ticket;
-//    const { email , firstName , lastName } = user;
-   
-   
+   const { label , id , taskDescription , deadline ,  state , createdBy} = ticket;
    const { user } = useSelector(state => state.auth.user);
    const navigate = useNavigate();
 
 
    let isUser = user.roles.includes('ROLE_USER');
-   let isAdmin = user.roles.includes('[ROLE_ADMIN]');
-   let isSuperAdmin = user.roles.includes('[ROLE_SUPER_ADMIN]');
+   let isAdmin = user.roles.includes('ROLE_ADMIN');
+   let isSuperAdmin = user.roles.includes('ROLE_SUPER_ADMIN');
    const dispatch = useDispatch();
 
    const getState=( state) => {
@@ -29,7 +26,9 @@ function TicketItem({  ticket , index, setDeletedTicket , setDelivertask} ) {
         switch(state) {
             case "0" :
                 return "En attente"
+                 
             case "1" :
+
                 return "En cours"
             case "2" : 
                 return "Terminé"
@@ -47,10 +46,9 @@ function TicketItem({  ticket , index, setDeletedTicket , setDelivertask} ) {
                 return(
                  <button type="button" className="btn btn-outline-info"  
                  onClick={() => {
-                    //  updateTicketState("2") 
                     setDelivertask(true)
                     }}
-                 >Envoyer  </button>);
+                 >Envoyer</button>);
             default :
                 return ""
         }
@@ -84,14 +82,26 @@ function TicketItem({  ticket , index, setDeletedTicket , setDelivertask} ) {
                 {label}
             </NavLink>
         </Td>
-        <Td>
-            <NavLink
-                to={`#`}
-                className={`text-dark-75 font-weight-bolder d-block font-size-lg text-dark `}
-            >
-              { ( ticket.user )&& ticket.user.firstName +  ticket.user.lastName }
-            </NavLink>
-        </Td>
+        { (isSuperAdmin || isAdmin) ?
+            <Td>
+                <NavLink
+                    to={`#`}
+                    className={`text-dark-75 font-weight-bolder d-block font-size-lg text-dark `}
+                >
+                { ( ticket.user ) && ticket.user.firstName + ' ' + ticket.user.lastName }
+                </NavLink>
+            </Td>  
+        :
+            <Td>
+                <NavLink
+                    to={`#`}
+                    className={`text-dark-75 font-weight-bolder d-block font-size-lg text-dark `}
+                >
+                { ( createdBy) && createdBy.firstName + ' ' + createdBy.lastName }
+                </NavLink>
+            </Td>  
+        }
+
         <Td>
             <NavLink
                 to={`#`}
@@ -101,12 +111,14 @@ function TicketItem({  ticket , index, setDeletedTicket , setDelivertask} ) {
             </NavLink>
         </Td>
 
-        {  ( isAdmin || isSuperAdmin ) &&
+        {  ( ( isAdmin || isSuperAdmin ) && state == '0' ) &&
+            
             <Td className="pr-0 text-center" >
                 <IconButton
                     onClick={() => navigate(`/tickets/edit/${id}`)}
                     tooltip="Modifier"
                     src="/media/svg/Edit.svg"
+                    variant="primary"
                 />
 
                 <IconButton

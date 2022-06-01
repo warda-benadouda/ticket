@@ -2,10 +2,6 @@ import { actionTypes } from "./actionType";
 
 export const actions = {
 
-    requestSuperAdminTickets: (filter) => ({
-        type: actionTypes.RequestSuperAdminTickets,
-        payload: { filter},
-    }),
     requestTickets: ( id , filter) => ({
         type: actionTypes.RequestTickets,
         payload: { id , filter},

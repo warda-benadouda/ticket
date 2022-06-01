@@ -51,10 +51,13 @@ class TicketRepository extends ServiceEntityRepository
 
 
     public function getListeForAdmin(int $userId, array $filters = []) {
+ 
 
 
         $queryBuilder =  $this->createQueryBuilder('t')
             ->select('t')
+            // ->addSelect('c.email , c.firstName , c.lastName')
+            // ->join('t.createdBy' , 'c')
             ->where('t.user = :userId ')
             ->setParameter(':userId', $userId );
 

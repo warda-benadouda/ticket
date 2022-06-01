@@ -91,9 +91,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups([  "user:put" , "user:post"])]
     private $password;
 
+    #[ORM\OneToMany(mappedBy: 'createdBy', targetEntity: Ticket::class)]
+    private $createdTickets;
+
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
+        $this->createdTickets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -243,5 +247,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Ticket>
+     */
+    public function getCreatedTickets(): Collection
+    {
+        return $this->createdTickets;
+    }
+
+    public function addCreatedTicket(Ticket $createdTicket): self
+    {
+        if (!$this->createdTickets->contains($createdTicket)) {
+            $this->createdTickets[] = $createdTicket;
+            $createdTicket->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreatedTicket(Ticket $createdTicket): self
+    {
+        if ($this->createdTickets->removeElement($createdTicket)) {
+            // set the owning side to null (unless already changed)
+            if ($createdTicket->getCreatedBy() === $this) {
+                $createdTicket->setCreatedBy(null);
+            }
+        }
+
+        return $this;
     }
 }

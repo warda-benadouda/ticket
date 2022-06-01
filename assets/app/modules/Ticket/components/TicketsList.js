@@ -26,19 +26,9 @@ function TicketsList() {
 
 
     useEffect(() => {
-
-        user && 
-        user.roles.includes("ROLE_SUPER_ADMIN") ?  
-        dispatch(actions.requestSuperAdminTickets(filter))  
-        :
-        dispatch(actions.requestTickets(id ,filter));
-
-    }, [user]);
-
-
-
-
-
+        dispatch(actions.requestTickets(filter));
+    }, []);
+    
   return (
     <div className="card-body pt-0 pb-4">
         <div className="d-flex justify-content-between align-items-center mb-4">
