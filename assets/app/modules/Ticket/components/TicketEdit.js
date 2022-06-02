@@ -11,7 +11,7 @@ import { getTicket , updateTicket} from '../_redux/api';
 import { Loading } from '../../../components/Loading';
 import { Select } from "../../../components/form/Select";
 import { getCompany } from "../../Company/_redux/api";
-import { getDepartement } from "../../Departement/pages/_redux/api";
+import { getDepartement } from "../../Departement/_redux/api";
 
 
 

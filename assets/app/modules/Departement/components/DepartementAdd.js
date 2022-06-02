@@ -1,28 +1,19 @@
 import { Form, Formik } from 'formik';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from '../../../components/form/Input';
 import * as Yup from "yup";
 import { Submit } from '../../../components/form/Submit';
 import { addCompany, getCompanies, getCompany } from "../../Company/_redux/api";
 import { useNavigate } from 'react-router-dom';
+import { addDepartement } from '../_redux/api';
+import { Select } from '../../../components/form/Select';
 
-function AddCompany () {
+function DepartementAdd() {
 
   const navigate = useNavigate();
   const [ companies , setCompanies ] = useState();
-  
-  const initialValues = {
-    name : '' ,
-    description : ''
 
-  };
-  const schema = Yup.object().shape({
-      
-      name: Yup.string().required("Le nom est  obligatoire"),
-      description: Yup.string().required("la description est obligatoire"),
-  });
-
-  useEffect (() => {
+  useEffect(() => {
     getCompanies()
     .then( (response) => { 
      setCompanies(response)
@@ -30,10 +21,20 @@ function AddCompany () {
     .catch( (errors ) => console.log(errors))
 } , [])
 
-  const saveCompany = (values, setStatus, setSubmitting) => {
-    addCompany(values)
+  const initialValues = {
+    name : '' ,
+    company: ''
+
+  };
+  const schema = Yup.object().shape({
+    name : Yup.string().required("Le nom est  obligatoire"),
+    company: Yup.string().required("Entreprise est obligatoire"),
+  });
+
+  const saveDepartement = (values, setStatus, setSubmitting) => {
+    addDepartement(values)
     .then( (response) => { 
-        navigate(`/companies/edit/${response.id}`)
+        navigate(`/departements/edit/${response.id}`)
     })
     .catch( (errors ) => console.log(errors))
   }
@@ -42,14 +43,21 @@ function AddCompany () {
     <Formik initialValues={initialValues}
         validationSchema={schema}
         onSubmit={(values, { setStatus, setSubmitting }) => {
-          saveCompany( values , setStatus, setSubmitting);
+          saveDepartement( values , setStatus, setSubmitting);
         }}
         onReset={(values, { resetForm }) => resetForm()}
     >
           {({ errors, isSubmitting, submitForm }) => (
               <Form>
                   <Input label="name" name="name" />
-                  <Input label="description" name="description" />
+                  <Select name="company"
+                        label="company"
+                        placeholder={"Sélectionnez une entreprise..."}
+                    >
+                        {companies && companies.map((company, index) => (
+                            <option key={index} value={company["@id"]}>{company.name}</option>
+                        ))}
+                    </Select>
                   <Submit
                       onClick={submitForm}
                       onReset={() => navigate(-1)}
@@ -62,4 +70,4 @@ function AddCompany () {
   )
 }
 
-export default AddCompany 
+export default DepartementAdd

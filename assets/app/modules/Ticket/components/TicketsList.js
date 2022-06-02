@@ -16,16 +16,10 @@ function TicketsList() {
     const [deletedticket, setDeletedTicket] = useState(false);
     const [ delivertask , setDelivertask] = useState(false);
     const [ filter , setFilter] = useState('');
-    // let filter = ""
-
     const dispatch = useDispatch();
     const tickets = useSelector(state => state.ticket.tickets);
-
-
-
     let isUser = user.roles.includes('ROLE_USER');
     let isAdmin = user.roles.includes('[ROLE_ADMIN]');
-
 
     useEffect(() => {
         dispatch(actions.requestTickets(filter));
@@ -37,11 +31,8 @@ function TicketsList() {
     
   return (
     <div className="card-body pt-0 pb-4">
-        <div className="d-flex justify-content-between align-items-center mb-4">
-                <div >
-                    <h3 className="font-weight-bold mb-6">Liste des tickets </h3>
-                </div>
-
+        <div className="d-flex justify-content-end align-items-center mb-4">
+             
                 <form>
                     <div className='d-flex form-group align-items-center'>
                         <label className="mr-2 d-flex "> 

@@ -28,12 +28,12 @@ export const reducer = (state = initialState, action) => {
         }
         case actionTypes.deleteCompany: {
 
-            const { ticket } = action.payload;
+            const { company} = action.payload;
 
 
             return {
                 ...state,
-                companies : state.companies.filter( c => c['@id'] !== ticket['@id'])
+                companies : state.companies.filter( c => c['@id'] !== company['@id'])
             };
         }
         default:

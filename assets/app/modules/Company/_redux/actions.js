@@ -16,7 +16,7 @@ export const actions = {
     }),
     setCompany: (company) => ({
         type: actionTypes.SetCompany,
-        payload: { ticket }
+        payload: { company }
     }),
     deleteCompany: (company) => ({
         type: actionTypes.deleteCompany,

@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Loading } from '../../../components/Loading';
 import { Table } from '../../../components/table/Table';
 import { Th } from '../../../components/table/Th';
 import CompanyItem from './CompanyItem';
 import { actions } from '../_redux/actions';
+import CompanyDelete from './CompanyDelete';
 
 function CompaniesList() {
 
 
-    const {user } = useSelector(state => state.auth.user);
     const dispatch = useDispatch();
     const companies = useSelector(state => state.company.companies);
+    const [deletedCompany, setDeletedCompany] = useState(false);
 
      let filter = "";
 
@@ -23,11 +24,6 @@ function CompaniesList() {
 
   return (
     <div className="card-body pt-0 pb-4">
-        <div className="d-flex justify-content-between align-items-center mb-4">
-                <div >
-                    <h3 className="font-weight-bold mb-6">Liste des  entreprise</h3>
-                </div>
-        </div>
 
         <Table>
             <thead>
@@ -42,7 +38,7 @@ function CompaniesList() {
                     { companies ?
                         companies.length > 0 ?
                             (companies.map(( company, index) => 
-                            <CompanyItem company={company} key={index} />))
+                            <CompanyItem company={company} key={index} setDeletedCompany={setDeletedCompany} />))
                             :
                             <tr>
                                 <td />
@@ -55,6 +51,7 @@ function CompaniesList() {
                   
                 </tbody>
         </Table> 
+        {deletedCompany && <CompanyDelete company={deletedCompany} show={deletedCompany} handleShow={setDeletedCompany} />}
         
     </div>
     

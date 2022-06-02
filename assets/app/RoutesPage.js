@@ -11,6 +11,8 @@ import User from './modules/User/pages/User'
 import ErrorPage from './ErrorPage';
 import Layout from './Layout';
 import TicketEdit from './modules/Ticket/components/TicketEdit';
+import CompanyEdit from './modules/Company/components/CompanyEdit';
+import DepartementEdit from './modules/Departement/components/DepartementEdit';
 
 
 function RoutesPage() {
@@ -41,6 +43,14 @@ function RoutesPage() {
                   <Route
                     path="tickets/edit/:id"
                     element={<TicketEdit/>}
+                  /> 
+                  <Route
+                    path="companies/edit/:id"
+                    element={<CompanyEdit/>}
+                  /> 
+                  <Route
+                    path="departements/edit/:id"
+                    element={<DepartementEdit/>}
                   /> 
           </Route>
           

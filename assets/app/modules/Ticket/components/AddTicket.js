@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import Input from '../../../components/form/Input';
 import { Submit } from '../../../components/form/Submit';
-import { getDepartement } from "../../Departement/pages/_redux/api";
+import { getDepartement } from "../../Departement/_redux/api";
 import { addTicket} from '../_redux/api';
 import { useSelector } from 'react-redux';
 import { Select } from '../../../components/form/Select';

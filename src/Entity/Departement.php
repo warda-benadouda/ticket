@@ -55,7 +55,7 @@ class Departement
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups([ "departement:get" , "companies:get"  , "company:get"])]
+    #[Groups([ "departement:get" , "departements:get" , "companies:get"  , "company:get"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
