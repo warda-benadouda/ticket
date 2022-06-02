@@ -73,7 +73,7 @@ function Login() {
                       <Input label="email" name="email" />
                     </div>
                     <div className="form-group last mb-4">
-                      <Input label="password" name="password" />
+                      <Input label="password" name="password" type="password" />
                     </div>
                       <input type="submit" value="Se connecter" className="btn btn-block btn-primary" onClick={submitForm}/>
                   </div>

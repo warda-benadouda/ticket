@@ -75,40 +75,31 @@ function TicketItem({  ticket , index, setDeletedTicket , setDelivertask} ) {
             </div>
         </Td>
         <Td>
-            <NavLink
-                to={`#`}
-                className={`text-dark-75 font-weight-bolder d-block font-size-lg  text-dark`}
-            >
-                {label}
-            </NavLink>
+
+            <span  className={`text-dark-75 font-weight-bolder d-block font-size-lg  text-dark`} >{label} </span>
         </Td>
         { (isSuperAdmin || isAdmin) ?
             <Td>
-                <NavLink
-                    to={`#`}
-                    className={`text-dark-75 font-weight-bolder d-block font-size-lg text-dark `}
-                >
-                { ( ticket.user ) && ticket.user.firstName + ' ' + ticket.user.lastName }
-                </NavLink>
+
+               {( ticket.user ) && 
+               <span  className={`text-dark-75 font-weight-bolder d-block font-size-lg  text-dark`} >
+                   {ticket.user.firstName + ' ' + ticket.user.lastName } 
+                   </span> }
             </Td>  
         :
             <Td>
-                <NavLink
-                    to={`#`}
-                    className={`text-dark-75 font-weight-bolder d-block font-size-lg text-dark `}
-                >
-                { ( createdBy) && createdBy.firstName + ' ' + createdBy.lastName }
-                </NavLink>
+                { ( createdBy) && 
+                <span  className={`text-dark-75 font-weight-bolder d-block font-size-lg  text-dark`} >
+                    {createdBy.firstName + ' ' + createdBy.lastName} 
+                </span>
+                 }
             </Td>  
         }
 
         <Td>
-            <NavLink
-                to={`#`}
-                className={`text-dark-75 font-weight-bolder d-block font-size-lg  text-dark`}
-            >
-              {getState(state)}
-            </NavLink>
+            <span  className={`text-dark-75 font-weight-bolder d-block font-size-lg  text-dark`} >
+                     {getState(state)}
+            </span>
         </Td>
 
         {  ( ( isAdmin || isSuperAdmin ) && state == '0' ) &&
