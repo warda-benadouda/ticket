@@ -1,12 +1,22 @@
 import React from 'react'
 import {Button, Modal} from "react-bootstrap";
+import { useDispatch } from 'react-redux';
 import {  updateTicket} from '../_redux/api';
+import { actions } from '../_redux/actions';
 
-function DeliverTicket({handleShow, show}) {
+
+function DeliverTicket({handleShow, show , delivertask}) {
+
+
+    const dispatch = useDispatch();
 
     const SendFileTicket = () => {
-            //call Backend Action (swiftmailer) 
-            // if 200 closse model , change state
+          
+        updateTicket(delivertask.id , { state : "2" })
+        .then( response => { 
+             dispatch(actions.requestTickets())
+        })
+        .catch( errors => { console.log(errors)} )
     }
 
   return (

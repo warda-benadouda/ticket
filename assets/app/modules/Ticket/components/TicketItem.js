@@ -46,7 +46,7 @@ function TicketItem({  ticket , index, setDeletedTicket , setDelivertask} ) {
                 return(
                  <button type="button" className="btn btn-outline-info"  
                  onClick={() => {
-                    setDelivertask(true)
+                    setDelivertask(ticket)
                     }}
                  >Envoyer</button>);
             default :
@@ -59,7 +59,7 @@ function TicketItem({  ticket , index, setDeletedTicket , setDelivertask} ) {
 
        updateTicket(id , { state : taskState })
        .then( response => { 
-            dispatch(actions.requestTickets(user.id))
+            dispatch(actions.requestTickets())
        })
        .catch( errors => { console.log(errors)} )
    }

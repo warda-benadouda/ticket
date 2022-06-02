@@ -2,9 +2,9 @@ import { actionTypes } from "./actionType";
 
 export const actions = {
 
-    requestTickets: ( id , filter) => ({
+    requestTickets: ( filter) => ({
         type: actionTypes.RequestTickets,
-        payload: { id , filter},
+        payload: {  filter},
     }),
     setTickets: (tickets) => ({
         type: actionTypes.SetTickets,

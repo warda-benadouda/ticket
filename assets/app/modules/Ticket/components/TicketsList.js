@@ -84,7 +84,7 @@ function TicketsList() {
 
                     }
                     {deletedticket && <TicketDelete ticket={deletedticket} show={deletedticket} handleShow={setDeletedTicket} />}
-                    {delivertask && <DeliverTicket show={delivertask} handleShow={setDelivertask} /> }
+                    {delivertask && <DeliverTicket show={delivertask} handleShow={setDelivertask} delivertask={delivertask} /> }
                 </tbody>
         </Table>
     </div>

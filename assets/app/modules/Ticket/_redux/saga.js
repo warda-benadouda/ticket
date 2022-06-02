@@ -7,9 +7,9 @@ import {
 
 export function* saga() {
 
-    yield takeLatest(actionTypes.RequestTickets , function* getTicketsSaga({ payload: { id , filter} }) {
+    yield takeLatest(actionTypes.RequestTickets , function* getTicketsSaga({ payload: {  filter} }) {
         try {
-            const tickets = yield call(getTickets ,  id , filter);
+            const tickets = yield call(getTickets ,   filter);
             yield put(actions. setTickets(tickets ));
         } catch (error) {console.log(error);}
     });
