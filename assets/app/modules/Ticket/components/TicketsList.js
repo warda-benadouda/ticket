@@ -15,10 +15,12 @@ function TicketsList() {
     const { id } = user;
     const [deletedticket, setDeletedTicket] = useState(false);
     const [ delivertask , setDelivertask] = useState(false);
-    let filter = ""
+    const [ filter , setFilter] = useState('');
+    // let filter = ""
 
     const dispatch = useDispatch();
     const tickets = useSelector(state => state.ticket.tickets);
+
 
 
     let isUser = user.roles.includes('ROLE_USER');
@@ -28,6 +30,10 @@ function TicketsList() {
     useEffect(() => {
         dispatch(actions.requestTickets(filter));
     }, []);
+
+    useEffect(() => {
+        filter && dispatch(actions.requestTickets("?state=" +filter));
+    }, [filter]);
     
   return (
     <div className="card-body pt-0 pb-4">
@@ -36,17 +42,18 @@ function TicketsList() {
                     <h3 className="font-weight-bold mb-6">Liste des tickets </h3>
                 </div>
 
-                <div className='d-flex align-items-center'>
-                   
-                    <button className="btn btn-sm btn-danger" >
-                        <SVG
-                            className="mr-2 "
-                            src={"/media/svg/Search.svg"}
-                        />
-                        <span>Recherche</span>
-                    </button>
-
-                </div>
+                <form>
+                    <div className='d-flex form-group align-items-center'>
+                        <label className="mr-2 d-flex "> 
+                        <SVG className="mr-2 "src={"/media/svg/Search.svg"}/>Recherche</label>
+                        <select className="form-control" onClick={ (e) => setFilter( e.target.value)}>
+                            <option value="">Recherche par etat</option>
+                            <option value="0">En attente</option>
+                            <option value="1">en cours</option>
+                            <option value="2">Terminer</option>
+                        </select>
+                    </div>
+                </form>
         </div>
         <Table>
             <thead>

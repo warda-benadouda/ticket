@@ -23,10 +23,11 @@ class GetTicketsAction  extends DefaultController
     {
 
         $user = $this->getUser();
-
-        
         $filters = [];
-               
+
+        foreach ($request->query->all() as $key => $query) {
+            $filters[$key] = $query;
+        }
 
          if ($this->isGranted('ROLE_SUPER_ADMIN', $user)) {
 

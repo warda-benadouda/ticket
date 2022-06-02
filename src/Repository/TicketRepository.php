@@ -39,14 +39,27 @@ class TicketRepository extends ServiceEntityRepository
         }
     }
 
+    public function setFilters( $queryBuilder , array $filters = []) {
+
+        if (count($filters)) {
+ 
+
+            if (array_key_exists('state', $filters)) {
+                $queryBuilder->andWhere("t.state = {$filters["state"]}");
+            }
+ 
+        }
+        return $queryBuilder->getQuery()->getResult(); 
+    }
+
+
     public function getListeForSuperAdmin(array $filters = []) {
 
         $queryBuilder =  $this->createQueryBuilder('t')
             ->select('t');
-        
-        return $queryBuilder->getQuery()->getResult();     
 
-        // return $this->setQueryFilters($queryBuilder, $filters, $itemPerPage);
+        return $this->setFilters($queryBuilder , $filters );
+ 
     }
 
 
@@ -56,13 +69,10 @@ class TicketRepository extends ServiceEntityRepository
 
         $queryBuilder =  $this->createQueryBuilder('t')
             ->select('t')
-            // ->addSelect('c.email , c.firstName , c.lastName')
-            // ->join('t.createdBy' , 'c')
             ->where('t.user = :userId ')
             ->setParameter(':userId', $userId );
-
-        return $queryBuilder->getQuery()->getResult(); 
-        // return $this->setQueryFilters($queryBuilder, $filters, $itemPerPage);
+        
+        return $this->setFilters($queryBuilder , $filters );
 
     }
 
