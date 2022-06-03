@@ -3,10 +3,12 @@
 # Technologies 
 
 symfony 5.4
+
 react js  18.1.0
 
-# run with Docker
+## run with Docker
 
+```bash
 docker-compose up -d --build
 
 docker-compose exec php composer install
