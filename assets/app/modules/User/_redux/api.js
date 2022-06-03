@@ -24,11 +24,13 @@ export async function getUser(id){
 }
 
 export async function addUser(user) {
+  console.log("responsejjjj")
   const response = await axios.post(URL, user);
   const data = response.data;
   if (response.status > 400) {
     throw new Error(data.error)
   }
+
   return 'hydra:member' in data ? data["hydra:member"] : data;
 }
 
