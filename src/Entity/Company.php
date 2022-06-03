@@ -54,11 +54,11 @@ class Company
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups([ "company:get" , "companies:get" ])]
+    #[Groups([ "company:get" , "companies:get" , "user:get" ])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "companies:get" , "company:get" , "company:post" , "company:put" , "departements:get" ])]
+    #[Groups([ "companies:get" , "company:get" , "company:post" , "company:put" , "departements:get" , "user:get" ])]
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]

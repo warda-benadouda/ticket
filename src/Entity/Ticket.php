@@ -74,7 +74,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         ],
     ],
     'delete' => [
-        "security" => "is_granted('DELETE', object) ",
+        // "security" => "is_granted('DELETE', object) ",
     ]],
 )]
 class Ticket

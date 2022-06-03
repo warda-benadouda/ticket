@@ -19,7 +19,6 @@ function DepartementsList() {
         dispatch(actions.requestDepartements(filter));
     }, []);
 
-     console.log('departements' , departements)
   return (
     <div className="card-body pt-0 pb-4">
 
@@ -28,7 +27,7 @@ function DepartementsList() {
                 <tr>
                     <th className="pl-0" minwidth={50} />
                     <Th minwidth={150} >Nom</Th>
-                    <Th minwidth={50}  >Departement</Th>
+                    <Th minwidth={50}  >Entreprise</Th>
                     <Th minwidth={50} className="text-center" >Action</Th>
                 </tr>
             </thead>

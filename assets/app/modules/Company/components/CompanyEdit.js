@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { Card } from '../../../components/Card';
 import Input from "../../../components/form/Input";
 import { Submit } from "../../../components/form/Submit";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { actions } from '../_redux/actions';
 import { Loading } from '../../../components/Loading';
 import { Select } from "../../../components/form/Select";
@@ -17,6 +17,7 @@ function CompanyEdit() {
 
    
     const [ company , setCompany ] = useState();
+    const navigate = useNavigate();
     let {id} =  useParams();
 
     useEffect (() => {
@@ -65,7 +66,7 @@ function CompanyEdit() {
 
                     <Submit
                         onClick={submitForm}
-                        onReset={() => navigate(-1)}
+                        onReset={() => Navigate(-1)}
                         disabled={isSubmitting || errors.length}
                     />
                 </Form>

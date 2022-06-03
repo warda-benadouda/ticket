@@ -30,8 +30,8 @@ function UsersList() {
                 <tr>
                     <th className="pl-0" minwidth={50} />
                     <Th minwidth={150} >Nom</Th>
-                    <Th displayFrom="md" minwidth={120} >Prenom</Th>
-                    <Th displayFrom="md" minwidth={120} >departement</Th>
+                    <Th displayFrom="md" minwidth={120} >Prénom</Th>
+                    <Th displayFrom="md" minwidth={120} >département</Th>
                     <Th minwidth={50} className="text-center" >Actions</Th>
                 </tr>
             </thead>

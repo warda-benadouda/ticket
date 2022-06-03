@@ -50,7 +50,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         ],
     ],
     'delete' => [
-        "security" => "is_granted('DELETE', object) ",
+        // "security" => "is_granted('DELETE', object) ",
     ]],
 )]
 
@@ -77,7 +77,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToOne(targetEntity: Departement::class, inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post"])]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post" , "ticket:get"])]
     private $departement;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Ticket::class, orphanRemoval: true)]

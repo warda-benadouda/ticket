@@ -9,13 +9,14 @@ import { deleteUser } from '../_redux/api';
 function UserDelete({ user , handleShow, show}) {
 
     const { id } = user;
+    console.log(user , "user");
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const TodeleteUser = () => {
       deleteUser(id)
         .then(response => {
-            dispatch(actions.deleteUser(departement))
+            dispatch(actions.deleteUser(user))
             navigate(`/users`)
             handleShow(false)
         })

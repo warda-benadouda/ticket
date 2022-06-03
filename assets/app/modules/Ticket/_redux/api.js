@@ -54,12 +54,6 @@ export async function deleteTicket(id) {
 }
 
 export async function uploadDoneTaskFile(formdata , id ) {
-  // const response = await axios.post({
-  //   method: "post",
-  //   url: UPLOAD_URL.replace('{id}' , id ),
-  //   data: formdata,
-  //   headers: { "Content-Type": "multipart/form-data" },
-  // });
 
   const response = await axios({
     method: 'post',

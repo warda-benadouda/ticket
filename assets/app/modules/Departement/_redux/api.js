@@ -11,9 +11,9 @@ export async function getDepartements(){
       return 'hydra:member' in data ? data["hydra:member"] : data;
 }
 
-export async function getDepartement(id , ticket){
+export async function getDepartement(id , departement){
 
-  const response = await axios.get(`${URL}/${id}` , ticket)
+  const response = await axios.get(`${URL}/${id}` , departement)
   const data = response.data
   if (response.status > 400) {
       throw new Error(data)
@@ -22,8 +22,8 @@ export async function getDepartement(id , ticket){
 }
 
 
-export async function addDepartement(company) {
-  const response = await axios.post(URL, company);
+export async function addDepartement(departement) {
+  const response = await axios.post(URL, departement);
   const data = response.data;
   if (response.status > 400) {
     throw new Error(data.error)
@@ -33,7 +33,7 @@ export async function addDepartement(company) {
 
 export async function updateDepartement(  id , departement) {
 
-  const response = await axios.put(`${URL}/${id}` , company );
+  const response = await axios.put(`${URL}/${id}` , departement );
   const data = response.data;
   if (response.status > 400) {
     throw new Error(data)

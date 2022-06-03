@@ -40,7 +40,7 @@ function UserItem({ user , setDeletedUser }) {
             />
 
             <IconButton
-                onClick={() =>  setDeletedUser(departement)}
+                onClick={() =>  setDeletedUser(user)}
                 tooltip="Supprimer"
                 iconPath="/media/svg/Trash.svg"
                 filter="filter-red" 

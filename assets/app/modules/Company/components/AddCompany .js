@@ -48,8 +48,8 @@ function AddCompany () {
     >
           {({ errors, isSubmitting, submitForm }) => (
               <Form>
-                  <Input label="name" name="name" />
-                  <Input label="description" name="description" />
+                  <Input label="Nom" name="name" />
+                  <Input label="Description" name="description" />
                   <Submit
                       onClick={submitForm}
                       onReset={() => navigate(-1)}

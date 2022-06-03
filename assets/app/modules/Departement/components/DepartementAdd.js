@@ -49,9 +49,9 @@ function DepartementAdd() {
     >
           {({ errors, isSubmitting, submitForm }) => (
               <Form>
-                  <Input label="name" name="name" />
+                  <Input label="Nom" name="name" />
                   <Select name="company"
-                        label="company"
+                        label="Entreprise"
                         placeholder={"Sélectionnez une entreprise..."}
                     >
                         {companies && companies.map((company, index) => (

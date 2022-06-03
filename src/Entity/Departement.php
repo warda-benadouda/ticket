@@ -31,7 +31,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     ],
     itemOperations: [
     'get' => [
-        "security" => "is_granted('VIEW', object)",
+        // "security" => "is_granted('VIEW', object)",
         "normalization_context" => [
             "groups" => ["departement:get"],
         ],
@@ -64,7 +64,7 @@ class Departement
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'departements')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups([ "departements:get" , "departement:get" , "departement:post" , "departement:put" ])]
+    #[Groups([ "departements:get" , "departement:get" , "departement:post" , "departement:put"  , "user:get"])]
     private $company;
     
     #[ORM\OneToMany(mappedBy: 'departement', targetEntity: User::class, orphanRemoval: true)]

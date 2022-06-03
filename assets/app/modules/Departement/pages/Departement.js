@@ -37,14 +37,14 @@ function Departement() {
                     onClick={() => setActiveTab(tabs.departements_add) }
                     activeTab={activeTab}
                     name={  tabs.departements_add}
-                    tooltip={"Ajouter des departements"} 
+                    tooltip={"Ajouter des départements"} 
                  />
 
     </ToolBar>
 );
   return (
     <div className="content">
-        <Card title={"Departements"} toolbar={<Toolbar />}  >
+        <Card title={"Départements"} toolbar={<Toolbar />}  >
             {tabsSwitcher(activeTab)}
         </Card>
     </div>

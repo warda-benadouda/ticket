@@ -29,6 +29,7 @@ function TicketEdit() {
     useEffect (() => {
          getTicket(id)
          .then( (response) => { 
+             console.log(response)
              setTicket(response)
             })
          .catch( (errors ) => console.log(errors))
@@ -57,10 +58,11 @@ function TicketEdit() {
     const initialValues = {
         label : ticket?.label ,
         taskDescription : ticket?.taskDescription ,
-        deadline : (ticket?.taskDescription)?.split('T')[0], 
+        deadline : (ticket?.deadline)?.split('T')[0], 
         user : ticket?.user?.name , 
         state :  ticket?.state,
-        isUpdated : false
+        isUpdated : false,
+        departement : ticket?.user?.departement
     };
     const schema = Yup.object().shape({
          
@@ -99,9 +101,11 @@ function TicketEdit() {
                     <Input label="Nom" name="label" />
                     <Input label="Description" name="taskDescription" />
                     <Input  type="date" label="Date limite" name="deadline" />
-
+                   
+                    <label>Assistant (e) </label>
+                    <Input type="text" name="dep"   disabled value={ticket.user.firstName + ' ' +ticket.user.lastName} />
                     <Field type="checkbox" name="isUpdated"  onClick={ (e) => setRequiredDep(e.target.value) }/>
-                    <label className="ml-2">Modifier l'utilisateur</label>
+                    <label className="ml-2">Modifier l'assistant (e)</label>
 
                     { values.isUpdated && 
 

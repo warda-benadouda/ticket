@@ -17,6 +17,7 @@ function UserEdit() {
 
    
     const [ user , setUser ] = useState();
+
     const [ companies , setCompanies ] = useState();
     const [ departements , setDepartemets ] = useState();
     const [ selectedcompany , setSelecteCompany ] = useState();
@@ -30,6 +31,7 @@ function UserEdit() {
 
          getUser(id)
          .then( (response) => { 
+           console.log(response , "response")
             setUser(response)
             })
          .catch( (errors ) => console.log(errors))
@@ -39,6 +41,7 @@ function UserEdit() {
         setCompanies(response)
           })
         .catch( (errors ) => console.log(errors))
+        
     } , [])
 
     useEffect (() => {
@@ -56,26 +59,23 @@ function UserEdit() {
       firstName : user?.firstName,
       lastName : user?.lastName, 
       roles : user?.roles,
-      departement : user?.departement['@id'],
+      departement : user?.departement,
       email : user?.email ,
-      company : ''
+      company : user?.departement?.company?.id
 
     };
     const schema = Yup.object().shape({
-      // firstName: Yup.string().required("Prénom obligatoire"),
-      // lastName: Yup.string().required("Nom obligatoire"),
+      firstName: Yup.string().required("Prénom obligatoire"),
+      lastName: Yup.string().required("Nom obligatoire"),
       email: Yup.string().email().required("Email obligatoire"),
       company: Yup.string().required("Entreprise obligatoire"),
       departement: Yup.string().required("Département obligatoire"),
-      // roles: Yup.string().required("Role obligatoire"),
+      roles: Yup.string().required("Role obligatoire"),
     });
 
     
 
     const  ToupdateUser = (values, setStatus, setSubmitting) => {
-
- 
-
         updateUser(id , { ...values , roles : { 0 : role}} ) 
 
         .then( (response) => { 
@@ -87,7 +87,7 @@ function UserEdit() {
   return (
     <div className="content">
         <Card title="Modifier l'utilisateur ">
-            { user ?
+            { ( user && companies  )?
             <Formik initialValues={initialValues}
                 validationSchema={schema}
                 onSubmit={(values, { setStatus, setSubmitting }) => {
@@ -112,7 +112,7 @@ function UserEdit() {
                     </Select>
 
                     <Select name="departement"
-                        label="departement"
+                        label="département"
                         placeholder={"Sélectionnez un departement..."}
                     >
                         { departements && departements.map(( dept, index) => (

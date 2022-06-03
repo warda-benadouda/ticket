@@ -37,7 +37,7 @@ function DepartementEdit() {
     
     const initialValues = {
         name : departement?.name ,
-        company: departement?.company['@id'] 
+        company: departement?.company
     };
     const schema = Yup.object().shape({
         name : Yup.string().required("Le nom est  obligatoire"),
@@ -56,9 +56,10 @@ function DepartementEdit() {
 
   return (
     <div className="content">
-        <Card title="Modifier le departement ">
-            { companies ?
-            <Formik initialValues={initialValues}
+        <Card title="Modifier le département ">
+            { departement ?
+            <Formik 
+                initialValues={initialValues}
                 validationSchema={schema}
                 onSubmit={(values, { setStatus, setSubmitting }) => {
                   toUpdatedepartement( values , setStatus, setSubmitting);
@@ -71,7 +72,7 @@ function DepartementEdit() {
                     <Input label="Nom" name="name" />
 
                     <Select name="company"
-                        label="company"
+                        label="Entreprise"
                         placeholder={"Sélectionnez une entreprise..."}
                     >
                         {companies && companies.map((company, index) => (
