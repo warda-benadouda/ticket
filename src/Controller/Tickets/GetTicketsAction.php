@@ -35,16 +35,25 @@ class GetTicketsAction  extends DefaultController
             $filters[$key] = $query;
         }
 
+        
+
          if ($this->isGranted('ROLE_SUPER_ADMIN', $user)) {
 
              $tickets = $this->ticketRepository->getListeForSuperAdmin($filters );
+            
              return $this->isGranted('LIST', $tickets) ? $tickets : throw $this->createAccessDeniedException();
 
 
-         } else  {
+         } elseif ($this->isGranted('ROLE_ADMIN', $user)) {
                
             $tickets = $this->ticketRepository->getListeForAdmin( $user->getId(), $filters);
+     
             return $this->isGranted('LIST', $tickets) ? $tickets : throw $this->createAccessDeniedException();
-        } 
+        } else{
+
+            $tickets = $this->ticketRepository->getListeForUser( $user->getId(), $filters);
+            return $this->isGranted('LIST', $tickets) ? $tickets : throw $this->createAccessDeniedException();
+
+        }
     }
 }

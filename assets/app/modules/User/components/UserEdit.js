@@ -21,7 +21,7 @@ function UserEdit() {
     const [ companies , setCompanies ] = useState();
     const [ departements , setDepartemets ] = useState();
     const [ selectedcompany , setSelecteCompany ] = useState();
-    const [  role , setRole ] = useState([]);
+    const [  role , setRole ] = useState();
     
     const navigate = useNavigate();
 
@@ -58,8 +58,8 @@ function UserEdit() {
     const initialValues = {
       firstName : user?.firstName,
       lastName : user?.lastName, 
-      roles : user?.roles,
-      departement : user?.departement,
+      roles : user?.roles[0],
+      departement : user?.departement['@id'],
       email : user?.email ,
       company : user?.departement?.company?.id
 
@@ -76,7 +76,7 @@ function UserEdit() {
     
 
     const  ToupdateUser = (values, setStatus, setSubmitting) => {
-        updateUser(id , { ...values , roles : { 0 : role}} ) 
+        updateUser(id , { ...values , roles : { 0 : values.roles}} ) 
 
         .then( (response) => { 
             navigate(-1)

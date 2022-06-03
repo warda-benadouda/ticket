@@ -17,6 +17,8 @@ import { getDepartement } from "../../Departement/_redux/api";
 
 function TicketEdit() {
 
+    
+
     const navigate = useNavigate();
     const [ ticket , setTicket ] = useState();
     const [  departements , setdepartements ] = useState();
@@ -24,6 +26,7 @@ function TicketEdit() {
     const [  requiredDep , setRequiredDep] = useState();
     const [users, setUsers] = useState(null)
     let {id} =  useParams();
+
     const { user }= useSelector(state => state.auth.user);
 
     useEffect (() => {
@@ -40,8 +43,8 @@ function TicketEdit() {
             })
          .catch( (errors ) => console.log(errors))
     } , [])
-    
 
+  
     useEffect (() => {
 
         selectedDep && 
@@ -127,7 +130,7 @@ function TicketEdit() {
                         placeholder={"Sélectionnez un utilisateur..."}
                     >
                         {users && users.map((user, index) => (
-                            <option key={index} value={user["@id"]}>{user.firstName} {user.lastName} ({user.email})</option>
+                            <option key={index} value={user["@id"]}>{user.firstName} {user.lastName} </option>
                         ))}
                     </Select>
                     }

@@ -64,7 +64,7 @@ class Departement
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'departements')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups([ "departements:get" , "departement:get" , "departement:post" , "departement:put"  , "user:get"])]
+    #[Groups([ "departements:get" , "departement:get" , "departement:post" , "departement:put"  , "user:get" , "users:get"])]
     private $company;
     
     #[ORM\OneToMany(mappedBy: 'departement', targetEntity: User::class, orphanRemoval: true)]

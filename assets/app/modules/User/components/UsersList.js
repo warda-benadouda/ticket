@@ -14,10 +14,8 @@ function UsersList() {
     const users = useSelector(state => state.user.users);
     const [deletedUser, setDeletedUser] = useState(false);
 
-     let filter = "";
-
     useEffect(() => {
-        dispatch(actions.requestUsers(filter));
+        dispatch(actions.requestUsers());
        
         
     }, []);
@@ -32,6 +30,7 @@ function UsersList() {
                     <Th minwidth={150} >Nom</Th>
                     <Th displayFrom="md" minwidth={120} >Prénom</Th>
                     <Th displayFrom="md" minwidth={120} >département</Th>
+                    <Th displayFrom="md" minwidth={120} >Entreprise</Th>
                     <Th minwidth={50} className="text-center" >Actions</Th>
                 </tr>
             </thead>

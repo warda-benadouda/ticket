@@ -12,6 +12,7 @@ import { actions } from '../_redux/actions';
 function UserItem({ user , setDeletedUser }) {
 
     const { firstName , lastName, departement , id } = user;
+    const { company } = departement;
     const navigate = useNavigate();
 
   return (
@@ -29,6 +30,9 @@ function UserItem({ user , setDeletedUser }) {
     </Td>
     <Td>
         <span  className={`text-dark-75 font-weight-bolder d-block font-size-lg  text-dark`} >{departement.name} </span>
+    </Td>
+    <Td>
+        <span  className={`text-dark-75 font-weight-bolder d-block font-size-lg  text-dark`} >{company.name} </span>
     </Td>
     
         <Td className="pr-0 text-center" >

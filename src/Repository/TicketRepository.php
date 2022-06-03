@@ -69,6 +69,18 @@ class TicketRepository extends ServiceEntityRepository
 
         $queryBuilder =  $this->createQueryBuilder('t')
             ->select('t')
+            ->where('t.createdBy = :userId ')
+            ->setParameter(':userId', $userId );
+        
+        return $this->setFilters($queryBuilder , $filters );
+
+    }
+    public function getListeForUser(int $userId, array $filters = []) {
+ 
+
+
+        $queryBuilder =  $this->createQueryBuilder('t')
+            ->select('t')
             ->where('t.user = :userId ')
             ->setParameter(':userId', $userId );
         

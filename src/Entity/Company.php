@@ -58,7 +58,7 @@ class Company
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "companies:get" , "company:get" , "company:post" , "company:put" , "departements:get" , "user:get" ])]
+    #[Groups([ "companies:get" , "company:get" , "company:post" , "company:put" , "departements:get" , "user:get" , "users:get" ])]
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]

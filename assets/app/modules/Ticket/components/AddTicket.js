@@ -46,7 +46,6 @@ function AddTicket() {
       user : '' , 
       createdBy : `/api/users/${user.id}`,
       state : '0',
-
   };
   const schema = Yup.object().shape({
        
@@ -88,11 +87,11 @@ function AddTicket() {
                 </Select>
                     { selectedDep &&  
                     <Select name="user"
-                        label="User"
+                        label="Affecter a"
                         placeholder={"Sélectionnez un utilisateur..."}
                     >
                         {users && users.map((user, index) => (
-                            <option key={index} value={user["@id"]}>{user.firstName} {user.lastName} ({user.email})</option>
+                            <option key={index} value={user["@id"]}>{user.firstName} {user.lastName} </option>
                         ))}
                     </Select>
                     }
