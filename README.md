@@ -32,3 +32,9 @@ docker-compose exec php bin/console lexik:jwt:generate-keypair
 ```bash
 yarn install & yarn encore dev
 ```
+### visit 
+
+```bash
+ check http://localhost:84
+```
+
