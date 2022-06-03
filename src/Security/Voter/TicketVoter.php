@@ -42,11 +42,12 @@ class TicketVoter extends Voter
         
         switch ($attribute) {
             case 'LIST':
-                if ($this->security->isGranted(BaseVoter::ADMIN)) {
+                if ($this->security->isGranted(BaseVoter::ADMIN) || $this->security->isGranted(BaseVoter::USER)) {
                     if (is_array($subject)) {
                         return count(BaseVoter::checkArrayInstances($subject, Ticket::class)) === count($subject);
                     }
                 }
+
                 break;
             case 'CREATE':
                 if ( $this->security->isGranted(BaseVoter::ADMIN) ) {
@@ -58,11 +59,14 @@ class TicketVoter extends Voter
                     return $subject->getUser()->getDepartement()->getCompany() === $user->getDepartement()->getCompany();
                 }
                 if ( $this->security->isGranted(BaseVoter::USER) ) {
-                    return $user === $subject;
+                    return $user === $subject->getUser();
                 }
             case 'EDIT':
                 if ( $this->security->isGranted(BaseVoter::ADMIN) ) {
                     return $subject->getUser()->getDepartement()->getCompany() === $user->getDepartement()->getCompany();
+                }
+                if ( $this->security->isGranted(BaseVoter::USER) ) {
+                    return $user === $subject->getUser();
                 }
                 break;
         }

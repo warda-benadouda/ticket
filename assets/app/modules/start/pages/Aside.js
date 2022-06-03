@@ -1,29 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Col } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import SVG from "react-inlinesvg";
 import { Card } from '../../../components/Card';
 import { ToolBar } from '../../../components/ToolBar';
 import { Item } from '../../../components/Item';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 function Aside() {
 
-  const Toolbar = () => (
-    <ToolBar>
-
-        <Item title={"Liste"}  tooltip={"Liste des tickets "} />
-        <Item title={"Ajouter"}  tooltip={" Ajouter des tickets"} />
-
-    </ToolBar>
-);
+  const { user }= useSelector(state => state.auth.user);
+  let isSuperAdmin = user.roles.includes("ROLE_SUPER_ADMIN");
+  let isAdmin = user.roles.includes("ROLE_ADMIN");
 
   return (
-
     <>
       <div className="sidebar">
-         {/* <h1 className="">Logo</h1> */}
          <div className='pt-5'>
-             
+          { isSuperAdmin  &&  
+           < >
               <NavLink
                   
                     to="/companies"
@@ -52,6 +48,9 @@ function Aside() {
                 />
                 <span >Utilisateurs</span>
               </NavLink>
+           </>
+          } 
+
               <NavLink
                   to="/tickets"
                     >
@@ -61,15 +60,35 @@ function Aside() {
                 />
                 <span >Tickets</span>
               </NavLink>
+          {
+            ( isSuperAdmin || isAdmin) && 
+                
+            <NavLink
+                to="finished-tasks"
+                  >
+                <SVG
+                className="mr-2"
+                src={"/media/svg/Done-circle.svg"}
+              />
+              <span >Tâches effectuées</span>
+            </NavLink>
+            
+          }  
+          
+          
+
+            <NavLink
+                to="/logout"
+                  >
+                <SVG
+                  className="mr-2"
+                  src={"/media/svg/Sign-out.svg"}
+                />
+              <span  >Se déconnecter</span>
+            </NavLink>
              
          </div>
         
-      </div>
-
-      <div className="content">
-         <Card title={"Entreprises"}  toolbar={<Toolbar />} >
-  
-         </Card>
       </div>
     </>
 

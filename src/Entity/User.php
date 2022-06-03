@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -48,7 +50,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         ],
     ],
     'delete' => [
-        "security" => "is_granted('DELETE', object) ",
+        // "security" => "is_granted('DELETE', object) ",
     ]],
 )]
 
@@ -57,41 +59,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["user:get"])]
+    #[Groups(["user:get" , "users:get"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post"])]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post" , "tickets:get" , "ticket:get" ,  "departement:get"])]
     private $firstName;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post"])]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post" , "tickets:get" , "ticket:get"  ,  "departement:get"])]
     private $lastName;
 
     #[ORM\Column(type: 'json')]
-    #[Groups(["user:get", "users:post", "user:put"])]
+    #[Groups(["user:get", "users:get" ,"user:put" , "user:post"])]
+
     private $roles = [];
 
     #[ORM\ManyToOne(targetEntity: Departement::class, inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post"])]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post" , "ticket:get"])]
     private $departement;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Ticket::class, orphanRemoval: true)]
-    
+    #[ApiSubresource()]
+    #[Groups([  "user:get" ])]
     private $tickets;
 
     #[ORM\Column(type: 'string', length: 255 , unique : true)]
-    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post"])]
+    #[Groups([ "user:get" , "users:get" , "user:put" , "user:post" , "tickets:get" , "ticket:get"])]
     private $email;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Groups([  "user:put" , "user:post"])]
     private $password;
 
+    #[ORM\OneToMany(mappedBy: 'createdBy', targetEntity: Ticket::class)]
+    private $createdTickets;
+
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
+        $this->createdTickets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -241,5 +249,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Ticket>
+     */
+    public function getCreatedTickets(): Collection
+    {
+        return $this->createdTickets;
+    }
+
+    public function addCreatedTicket(Ticket $createdTicket): self
+    {
+        if (!$this->createdTickets->contains($createdTicket)) {
+            $this->createdTickets[] = $createdTicket;
+            $createdTicket->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreatedTicket(Ticket $createdTicket): self
+    {
+        if ($this->createdTickets->removeElement($createdTicket)) {
+            // set the owning side to null (unless already changed)
+            if ($createdTicket->getCreatedBy() === $this) {
+                $createdTicket->setCreatedBy(null);
+            }
+        }
+
+        return $this;
     }
 }

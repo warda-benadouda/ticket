@@ -18,6 +18,15 @@ services:
             MYSQL_USER: dev
             MYSQL_PASSWORD: dev2022
             # XDEBUG_CONFIG: "remote_host=${HOST_IP}"
+    phpmyadmin:
+        depends_on:
+            - db
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        ports:
+            - '8080:80'
+ 
+
     php:
         container_name: ticket_php
         build: php-fpm

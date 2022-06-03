@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\CompanyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -53,11 +54,11 @@ class Company
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups([ "company:get"  ])]
+    #[Groups([ "company:get" , "companies:get" , "user:get" ])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "companies:get" , "company:get" , "company:post" , "company:put" ])]
+    #[Groups([ "companies:get" , "company:get" , "company:post" , "company:put" , "departements:get" , "user:get" , "users:get" ])]
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -65,6 +66,7 @@ class Company
     private $description;
 
     #[ORM\OneToMany(mappedBy: 'company', targetEntity: Departement::class, orphanRemoval: true)]
+    #[Groups([ "companies:get" , "company:get" ])]
     private $departements;
 
     public function __construct()
@@ -130,4 +132,8 @@ class Company
 
         return $this;
     }
+    public function getValue():string {
+        return $this->getId();
+    }
+
 }

@@ -1,4 +1,6 @@
 import { actionTypes } from "./Actiontype";
+import {persistReducer} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const initialState = {
     user: undefined,
@@ -9,7 +11,9 @@ const initialState = {
     errors: false,
 };
 
-export function reducer(state = initialState, action) {
+export  const  reducer = persistReducer(
+    { storage, key: "root", whitelist: ["authToken", "user","originToken"]}, 
+    (state = initialState, action) => {
     switch (action.type) {
         case  actionTypes.Login: {
 
@@ -29,3 +33,5 @@ export function reducer(state = initialState, action) {
             return state
     }
 }
+
+);

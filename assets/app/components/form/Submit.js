@@ -11,7 +11,7 @@ export function Submit({label ="Enregistrer", size="lg", onReset, onResetLabel =
                     onReset &&
                     <BootstrapButton
                         onClick={onReset}
-                        variant={"light-secondary"}
+                        variant={"info"}
                         className={"mr-2"}
                         size={size}
                     >

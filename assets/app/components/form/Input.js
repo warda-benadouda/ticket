@@ -9,7 +9,7 @@ function Input({label, alignment = "vertical", ...props}) {
     
   return (
     <div className="form-group row">
-    <label className={`${isHorizontal ? 'col-md-12' : 'col-md-3'} col-xs-12`} >{ label ?? props.name}</label>
+    <label className={`${isHorizontal ? 'col-md-12' : 'col-md-3'} col-xs-12`} >{ label && label}</label>
     <div className={`${isHorizontal ? 'col-md-12' : 'col-md-9'} col-xs-12`}>
         <input
             {...field}

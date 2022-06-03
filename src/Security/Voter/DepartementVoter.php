@@ -51,7 +51,7 @@ class DepartementVoter extends Voter
                 return $this->security->isGranted(BaseVoter::SUPER_ADMIN);
                 break;
             case 'VIEW':
-                return $subject === $user->getCompany();
+                return $subject === $user->getDepartement()->getCompany();
                 break;
             
         }

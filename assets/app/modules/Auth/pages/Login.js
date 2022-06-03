@@ -18,8 +18,9 @@ function Login() {
 
      login(values.email, values.password)
      .then(({ data }) => {
+        dispatch(actions.login(data.token));
         dispatch(actions.loadUser(data));
-        navigate('/start');
+        navigate('/tickets');
     })
      .catch ( errors => {
        console.log( errors , "errors");
@@ -72,7 +73,7 @@ function Login() {
                       <Input label="email" name="email" />
                     </div>
                     <div className="form-group last mb-4">
-                      <Input label="password" name="password" />
+                      <Input label="password" name="password" type="password" />
                     </div>
                       <input type="submit" value="Se connecter" className="btn btn-block btn-primary" onClick={submitForm}/>
                   </div>
