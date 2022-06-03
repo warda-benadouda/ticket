@@ -70,7 +70,7 @@ function Aside() {
                 className="mr-2"
                 src={"/media/svg/Done-circle.svg"}
               />
-              <span >tâches terminées</span>
+              <span >Tâches effectuées</span>
             </NavLink>
             
           }  

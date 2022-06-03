@@ -4,7 +4,7 @@ import { Card } from '../../../components/Card'
 function DoneTasks() {
   return (
     <div className="content">
-        <Card title={"tâches terminées"}  >
+        <Card title={"Tâches effectuées"}  >
 
         </Card>
     </div>
