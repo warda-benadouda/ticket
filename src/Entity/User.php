@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\UserRepository;
@@ -70,7 +71,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $lastName;
 
     #[ORM\Column(type: 'json')]
-    #[Groups(["user:get", "users:post", "user:put"])]
+    #[Groups(["user:get", "users:post", "user:put" , "user:post"])]
+    #[ApiProperty(
+        attributes: [
+          "jsonld_context" => [
+            "@type" => "http://www.w3.org/2001/XMLSchema#array",
+          ]
+        ]
+      )]
     private $roles = [];
 
     #[ORM\ManyToOne(targetEntity: Departement::class, inversedBy: 'users')]

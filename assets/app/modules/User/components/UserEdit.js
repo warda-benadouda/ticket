@@ -65,13 +65,15 @@ function UserEdit() {
       email: Yup.string().email().required("Email obligatoire"),
       company: Yup.string().required("Entreprise obligatoire"),
       departement: Yup.string().required("Département obligatoire"),
-      roles: Yup.string().required("Role obligatoire"),
+      // roles: Yup.string().required("Role obligatoire"),
     });
 
     
 
     const  ToupdateUser = (values, setStatus, setSubmitting) => {
-        updateUser(id , {...values , roles : Array.from(values.roles)} ) 
+        // updateUser(id , {...values , roles : Array.from(values.roles)} ) 
+        updateUser(id , values ) 
+
         .then( (response) => { 
             navigate(-1)
             })
