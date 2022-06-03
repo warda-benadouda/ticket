@@ -20,6 +20,8 @@ function UserEdit() {
     const [ companies , setCompanies ] = useState();
     const [ departements , setDepartemets ] = useState();
     const [ selectedcompany , setSelecteCompany ] = useState();
+    const [  role , setRole ] = useState([]);
+    
     const navigate = useNavigate();
 
     let {id} =  useParams();
@@ -71,8 +73,10 @@ function UserEdit() {
     
 
     const  ToupdateUser = (values, setStatus, setSubmitting) => {
-        // updateUser(id , {...values , roles : Array.from(values.roles)} ) 
-        updateUser(id , values ) 
+
+ 
+
+        updateUser(id , { ...values , roles : { 0 : role}} ) 
 
         .then( (response) => { 
             navigate(-1)
@@ -119,6 +123,7 @@ function UserEdit() {
                             placeholder="Selectionnez un rôle..."
                             name="roles"
                             label="Rôle"
+                            onClick={ (e) => setRole(e.target.value)}
                         >
                             <option key='ROLE_USER' value='ROLE_USER'  >Utilisateur simple</option>
                             <option key='ROLE_ADMIN' value='ROLE_ADMIN'  >Administrateur</option>

@@ -71,14 +71,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $lastName;
 
     #[ORM\Column(type: 'json')]
-    #[Groups(["user:get", "users:post", "user:put" , "user:post"])]
-    #[ApiProperty(
-        attributes: [
-          "jsonld_context" => [
-            "@type" => "http://www.w3.org/2001/XMLSchema#array",
-          ]
-        ]
-      )]
+    #[Groups(["user:get", "users:get" ,"user:put" , "user:post"])]
+
     private $roles = [];
 
     #[ORM\ManyToOne(targetEntity: Departement::class, inversedBy: 'users')]

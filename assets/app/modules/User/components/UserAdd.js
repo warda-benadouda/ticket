@@ -16,6 +16,7 @@ function UserAdd() {
 
     const [ companies , setCompanies ] = useState();
     const [ departements , setDepartemets ] = useState();
+    const [  role , setRole ] = useState([]);
     const [ selectedcompany , setSelecteCompany ] = useState();
     const navigate = useNavigate();
 
@@ -42,7 +43,7 @@ function UserAdd() {
     const initialValues = {
       firstName : '',
       lastName : '', 
-      roles : [],
+      roles : '',
       departement : '' ,
       email : '' ,
       company : '',
@@ -59,11 +60,8 @@ function UserAdd() {
       password : Yup.string().required("Mot de passe obligatoire")
     });
 
-    
-
     const  ToAddUser = (values, setStatus, setSubmitting) => {
-
-        addUser( values) 
+        addUser( { ...values , roles : { 0 : role}} ) 
         .then( (response) => { 
           navigate(`/users/edit/${response.id}`)
             })
@@ -103,15 +101,16 @@ function UserAdd() {
                             <option key={index} value={dept["@id"]}> {dept.name} </option>
                         ))}
                     </Select>
-                  {/* <Select
+                  <Select
                             placeholder="Selectionnez un rôle..."
                             name="roles"
                             label="Rôle"
+                            onClick={ (e) => setRole(e.target.value) }
                         >
                             <option key='ROLE_USER' value='ROLE_USER'  >Utilisateur simple</option>
                             <option key='ROLE_ADMIN' value='ROLE_ADMIN'  >Administrateur</option>
                             <option key='ROLE_SUPER_ADMIN' value='ROLE_SUPER_ADMIN'>Super Administrateur</option> 
-                  </Select> */}
+                  </Select>
   
  
 
