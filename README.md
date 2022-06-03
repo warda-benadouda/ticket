@@ -10,6 +10,7 @@ react js  18.1.0
 
 ```bash
 docker-compose up -d --build
+```
 
 docker-compose exec php composer install
 
