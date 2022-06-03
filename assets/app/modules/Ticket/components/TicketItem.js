@@ -34,10 +34,7 @@ function TicketItem({  ticket , index, setDeletedTicket , setDelivertask} ) {
                 return (
                 <> 
                     <label className="mr-2">Terminé</label>
-                    <SVG
-                    className="mr-2"
-                    src={"/media/svg/Done-circle.svg"}
-                    />
+                    <img src={"/media/svg/Done-circle.svg"} className="filter-green"/>
                 </>
                 );
             default :
@@ -49,7 +46,7 @@ function TicketItem({  ticket , index, setDeletedTicket , setDelivertask} ) {
         switch(state) {
             case "0" :
                 return (
-                <button type="button" className="btn btn-outline-success" onClick={() => updateTicketState("1") }>Commencer</button>);
+                <button type="button" className="btn btn-outline-warning" onClick={() => updateTicketState("1") }>Commencer</button>);
             case "1" :
                 return(
                  <button type="button" className="btn btn-outline-info"  
@@ -76,10 +73,7 @@ function TicketItem({  ticket , index, setDeletedTicket , setDelivertask} ) {
     <tr>
         <Td className="" displayFrom={"sm"}>
             <div className=" d-flex justify-content-center">
-                <SVG
-                  className="mr-2 "
-                  src={"/media/svg/Ticket.svg"}
-                />
+                <img src={"/media/svg/Ticket.svg"} className="filter-primary"/>
             </div>
         </Td>
         <Td>
@@ -117,13 +111,14 @@ function TicketItem({  ticket , index, setDeletedTicket , setDelivertask} ) {
                     onClick={() => navigate(`/tickets/edit/${id}`)}
                     tooltip="Modifier"
                     src="/media/svg/Edit.svg"
-                    variant="primary"
+                    filter="filter-blue"                    
                 />
 
                 <IconButton
                     onClick={() =>  setDeletedTicket(ticket)}
                     tooltip="Supprimer"
                     iconPath="/media/svg/Trash.svg"
+                    filter="filter-red" 
                 />
             </Td>
         }

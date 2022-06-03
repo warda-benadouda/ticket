@@ -14,6 +14,8 @@ import TicketEdit from './modules/Ticket/components/TicketEdit';
 import CompanyEdit from './modules/Company/components/CompanyEdit';
 import DepartementEdit from './modules/Departement/components/DepartementEdit';
 import UserEdit from './modules/User/components/UserEdit';
+import DoneTasks from './modules/Ticket/pages/DoneTasks';
+
 
 
 function RoutesPage() {
@@ -57,12 +59,19 @@ function RoutesPage() {
                     path="users/edit/:id"
                     element={<UserEdit/>}
                   /> 
+                   <Route
+                    path="/finished-tasks"
+                    element={<DoneTasks/>}
+                  /> 
+
+                <Route
+                  path="/logout"
+                  element={
+                  <Navigate to="/" replace />
+                }
+                /> 
           </Route>
-          
-          {/* <Route
-             path="*"
-            element={<Navigate to="/" replace />}
-          /> */}
+
       </Routes>
   )
 }

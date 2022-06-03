@@ -18,10 +18,7 @@ function CompanyItem({company , setDeletedCompany }) {
     <tr>
     <Td className="" displayFrom={"sm"}>
         <div className=" d-flex justify-content-center">
-            <SVG
-              className="mr-2 "
-              src={"/media/svg/Building.svg"}
-            />
+            <img src={"/media/svg/Building.svg"} className="filter-primary"/>
         </div>
     </Td>
     <Td>
@@ -36,13 +33,14 @@ function CompanyItem({company , setDeletedCompany }) {
                 onClick={() => navigate(`/companies/edit/${id}`)}
                 tooltip="Modifier"
                 src="/media/svg/Edit.svg"
-                variant="primary"
+                filter="filter-blue" 
             />
 
             <IconButton
                 onClick={() =>  setDeletedCompany(company)}
                 tooltip="Supprimer"
                 iconPath="/media/svg/Trash.svg"
+                filter="filter-red" 
             />
         </Td>
  

@@ -18,10 +18,7 @@ function UserItem({ user , setDeletedUser }) {
     <tr>
     <Td className="" displayFrom={"sm"}>
         <div className=" d-flex justify-content-center">
-            <SVG
-              className="mr-2 "
-              src={"/media/svg/Commode2.svg"}
-            />
+           <img src={"/media/svg/Groupe.svg"} className="filter-primary"/>
         </div>
     </Td>
     <Td>
@@ -39,13 +36,14 @@ function UserItem({ user , setDeletedUser }) {
                 onClick={() => navigate(`/users/edit/${id}`)}
                 tooltip="Modifier"
                 src="/media/svg/Edit.svg"
-                variant="primary"
+                filter="filter-blue"
             />
 
             <IconButton
                 onClick={() =>  setDeletedUser(departement)}
                 tooltip="Supprimer"
                 iconPath="/media/svg/Trash.svg"
+                filter="filter-red" 
             />
         </Td>
  

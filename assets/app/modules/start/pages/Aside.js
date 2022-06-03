@@ -7,6 +7,7 @@ import { ToolBar } from '../../../components/ToolBar';
 import { Item } from '../../../components/Item';
 import { useDispatch, useSelector } from 'react-redux';
 
+
 function Aside() {
 
   const { user }= useSelector(state => state.auth.user);
@@ -14,10 +15,8 @@ function Aside() {
   let isAdmin = user.roles.includes("ROLE_ADMIN");
 
   return (
-
     <>
       <div className="sidebar">
-         {/* <h1 className="">Logo</h1> */}
          <div className='pt-5'>
           { isSuperAdmin  &&  
            < >
@@ -50,7 +49,8 @@ function Aside() {
                 <span >Utilisateurs</span>
               </NavLink>
            </>
-          }   
+          } 
+
               <NavLink
                   to="/tickets"
                     >
@@ -60,6 +60,32 @@ function Aside() {
                 />
                 <span >Tickets</span>
               </NavLink>
+          {
+            ( isSuperAdmin || isAdmin) && 
+                
+            <NavLink
+                to="finished-tasks"
+                  >
+                <SVG
+                className="mr-2"
+                src={"/media/svg/Done-circle.svg"}
+              />
+              <span >tâches terminées</span>
+            </NavLink>
+            
+          }  
+          
+          
+
+            <NavLink
+                to="/logout"
+                  >
+                <SVG
+                  className="mr-2"
+                  src={"/media/svg/Sign-out.svg"}
+                />
+              <span  >Se déconnecter</span>
+            </NavLink>
              
          </div>
         

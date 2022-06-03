@@ -2,7 +2,7 @@ import React from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import SVG from "react-inlinesvg";
 
-export const IconButton = ({ marginBtn = "m-1", disabled = '', onClick, size = "md", light = true, tooltip = null, iconPath = "/media/svg/Edit.svg", variant = "primary", className = "", ...props }) => {
+export const IconButton = ({ filter , marginBtn = "m-1", disabled = '', onClick, size = "md", light = true, tooltip = null, iconPath = "/media/svg/Edit.svg", variant = "primary", className = "", ...props }) => {
 
     const button = <button
         {...props}
@@ -10,9 +10,8 @@ export const IconButton = ({ marginBtn = "m-1", disabled = '', onClick, size = "
         onClick={(e) => onClick(e)}
 
     >
-        <SVG
-            src={iconPath}
-        />
+        <img src={iconPath} className={filter}/>
+
     </button>;
 
     if (tooltip) {

@@ -18,10 +18,7 @@ function DepartementItem({departement , setDeletedDepartement }) {
     <tr>
     <Td className="" displayFrom={"sm"}>
         <div className=" d-flex justify-content-center">
-            <SVG
-              className="mr-2 "
-              src={"/media/svg/Commode2.svg"}
-            />
+           <img src={"/media/svg/Commode2.svg"} className="filter-primary"/>
         </div>
     </Td>
     <Td>
@@ -36,13 +33,14 @@ function DepartementItem({departement , setDeletedDepartement }) {
                 onClick={() => navigate(`/departements/edit/${id}`)}
                 tooltip="Modifier"
                 src="/media/svg/Edit.svg"
-                variant="primary"
+                filter="filter-blue"
             />
 
             <IconButton
                 onClick={() =>   setDeletedDepartement(departement)}
                 tooltip="Supprimer"
                 iconPath="/media/svg/Trash.svg"
+                filter="filter-red" 
             />
         </Td>
  
