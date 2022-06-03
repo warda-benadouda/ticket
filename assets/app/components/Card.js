@@ -11,11 +11,11 @@ export function Card({height="180px" , children, title, label, secondLabel, tool
                         <div className="card-header border-0 pt-5 bg-white">
                             {
                                 <>
-                                    {label && <h5 className="card-label text-muted">{label}</h5>}
+                                    {label && <h5 className="card-label text-primary">{label}</h5>}
                                     {title &&
                                         <>
                                             <h3 className="card-title align-items-center ">
-                                                <span className="card-label font-weight-bolder text-dark">{title}</span>
+                                                <span className="card-label font-weight-bolder text-primary">{title}</span>
                                             </h3>
                                             {subtitle && <h5 className="card-label text-muted"> {subtitle}</h5>}
                                         </>

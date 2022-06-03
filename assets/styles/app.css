@@ -26,12 +26,15 @@ body {
   }
    
   .sidebar a.active {
-    background-color: #01C3CC;
+    /* background-color: #01C3CC; */
+    background-color: #0779F9;
+
     color: white;
   }
   
   .sidebar a:hover:not(.active) {
-    background-color: #01C3CC;
+    /* background-color: #01C3CC; */
+    background-color: #0779F9;
     color: white;
   }
   

@@ -59,7 +59,7 @@ class Departement
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ "departements:get" , "departement:get" , "departement:post" , "departement:put" , "companies:get"  , "company:get"])]
+    #[Groups([ "departements:get" , "departement:get" , "departement:post" , "departement:put" , "companies:get"  , "company:get" , "users:get"])]
     private $name;
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'departements')]

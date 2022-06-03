@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from '../../../components/form/Input';
 import * as Yup from "yup";
 import { Submit } from '../../../components/form/Submit';
@@ -22,7 +22,7 @@ function AddCompany () {
       description: Yup.string().required("la description est obligatoire"),
   });
 
-  useEffect (() => {
+  useEffect(() => {
     getCompanies()
     .then( (response) => { 
      setCompanies(response)

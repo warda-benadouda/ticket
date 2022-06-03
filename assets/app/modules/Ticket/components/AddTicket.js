@@ -85,7 +85,7 @@ function AddTicket() {
                         { departements && departements.map(( dept, index) => (
                             <option key={index} value={dept["id"]}> {dept.name} </option>
                         ))}
-                    </Select>
+                </Select>
                     { selectedDep &&  
                     <Select name="user"
                         label="User"

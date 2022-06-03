@@ -13,6 +13,7 @@ import Layout from './Layout';
 import TicketEdit from './modules/Ticket/components/TicketEdit';
 import CompanyEdit from './modules/Company/components/CompanyEdit';
 import DepartementEdit from './modules/Departement/components/DepartementEdit';
+import UserEdit from './modules/User/components/UserEdit';
 
 
 function RoutesPage() {
@@ -51,6 +52,10 @@ function RoutesPage() {
                   <Route
                     path="departements/edit/:id"
                     element={<DepartementEdit/>}
+                  />
+                   <Route
+                    path="users/edit/:id"
+                    element={<UserEdit/>}
                   /> 
           </Route>
           
