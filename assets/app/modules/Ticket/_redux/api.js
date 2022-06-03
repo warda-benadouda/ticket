@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const URL = `/api/tickets`; 
+export const UPLOAD_URL = `/api/tickets/file/{id}`; 
 
 
 export async function getTickets( filter) {
@@ -50,4 +51,26 @@ export async function deleteTicket(id) {
     throw new Error(data.error)
   }
   return data;
+}
+
+export async function uploadDoneTaskFile(formdata , id ) {
+  // const response = await axios.post({
+  //   method: "post",
+  //   url: UPLOAD_URL.replace('{id}' , id ),
+  //   data: formdata,
+  //   headers: { "Content-Type": "multipart/form-data" },
+  // });
+
+  const response = await axios({
+    method: 'post',
+    url: UPLOAD_URL.replace('{id}' , id),
+    data: formdata,
+    headers: {
+        'Content-Type': `multipart/form-data; boundary=${formdata._boundary}`,
+    },
+});
+  if (response.status > 400) {
+    throw new Error(response)
+  }
+  return response;
 }

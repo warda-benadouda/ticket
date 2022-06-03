@@ -31,7 +31,15 @@ function TicketItem({  ticket , index, setDeletedTicket , setDelivertask} ) {
 
                 return "En cours"
             case "2" : 
-                return "Terminé"
+                return (
+                <> 
+                    <label className="mr-2">Terminé</label>
+                    <SVG
+                    className="mr-2"
+                    src={"/media/svg/Done-circle.svg"}
+                    />
+                </>
+                );
             default :
                  return "/"
         }

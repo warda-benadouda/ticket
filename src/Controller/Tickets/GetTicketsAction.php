@@ -23,6 +23,12 @@ class GetTicketsAction  extends DefaultController
     {
 
         $user = $this->getUser();
+        
+        if (!$user) {
+            return $this->createAccessDeniedException();
+        }
+
+        $user = $this->getUser();
         $filters = [];
 
         foreach ($request->query->all() as $key => $query) {
