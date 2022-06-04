@@ -116,7 +116,6 @@ function UserAdd() {
 
                     <Submit
                         onClick={submitForm}
-                        onReset={() => navigate(-1)}
                         disabled={isSubmitting || errors.length}
                     />
                 </Form>

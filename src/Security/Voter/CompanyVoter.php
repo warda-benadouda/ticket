@@ -20,6 +20,7 @@ class CompanyVoter extends Voter
 
     protected function supports(string $attribute, $subject): bool
     {
+
         $supportsAttribute = in_array($attribute, ['LIST', 'VIEW', 'CREATE', 'READ', 'EDIT', 'DELETE']);
 
         if (!$supportsAttribute) {
@@ -28,7 +29,11 @@ class CompanyVoter extends Voter
         if (is_array($subject)){
             return count(BaseVoter::checkArrayInstances($subject, Company::class)) === count($subject);
         }
-       
+        if (!$subject instanceof Company) {
+
+            return false;
+        }
+
         return $subject instanceof Company;
     }
 

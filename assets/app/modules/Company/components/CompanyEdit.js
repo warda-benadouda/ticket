@@ -15,9 +15,8 @@ import { getCompany, updateCompany } from "../_redux/api";
 
 function CompanyEdit() {
 
-   
-    const [ company , setCompany ] = useState();
     const navigate = useNavigate();
+    const [ company , setCompany ] = useState();
     let {id} =  useParams();
 
     useEffect (() => {
@@ -66,7 +65,7 @@ function CompanyEdit() {
 
                     <Submit
                         onClick={submitForm}
-                        onReset={() => Navigate(-1)}
+                        onReset={() => navigate(-1)}
                         disabled={isSubmitting || errors.length}
                     />
                 </Form>

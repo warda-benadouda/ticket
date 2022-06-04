@@ -69,6 +69,9 @@ class TicketVoter extends Voter
                     return $user === $subject->getUser();
                 }
                 break;
+            case 'DELETE':
+                return $this->security->isGranted(BaseVoter::ADMIN);
+                break;
         }
         return false;
     }

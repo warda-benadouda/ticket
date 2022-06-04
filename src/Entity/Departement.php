@@ -12,9 +12,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: DepartementRepository::class)]
 
 #[ApiResource(
+    attributes: ["pagination_enabled" => false],
     collectionOperations: [
         'get' => [
-            // "security" => "is_granted('LIST', object)",
+            "security" => "is_granted('LIST', object)",
             "normalization_context" => [
                 "groups" => ["departements:get"],
             ]
@@ -31,7 +32,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     ],
     itemOperations: [
     'get' => [
-        // "security" => "is_granted('VIEW', object)",
+        "security" => "is_granted('VIEW', object)",
         "normalization_context" => [
             "groups" => ["departement:get"],
         ],

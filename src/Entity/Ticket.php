@@ -12,9 +12,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: TicketRepository::class)]
 
 #[ApiResource(
+    attributes: ["pagination_enabled" => false],
     collectionOperations: [
         'get' => [
-            // "security" => "is_granted('LIST', object)",
+            "security" => "is_granted('LIST', object)",
             "controller" => GetTicketsAction::class,
             "normalization_context" => [
                 "groups" => ["tickets:get"],
@@ -74,7 +75,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         ],
     ],
     'delete' => [
-        // "security" => "is_granted('DELETE', object) ",
+        "security" => "is_granted('DELETE', object) ",
     ]],
 )]
 class Ticket

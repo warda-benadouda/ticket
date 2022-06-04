@@ -27,6 +27,11 @@ class UserVoter extends Voter
         if (is_array($subject)){
             return count(BaseVoter::checkArrayInstances($subject, User::class)) === count($subject);
         }
+        if (!$subject instanceof User) {
+
+            return false;
+        }
+
        
         return $subject instanceof User;
     }
@@ -49,11 +54,10 @@ class UserVoter extends Voter
                 }
                 break;
             case 'CREATE':
-                if ( $this->security->isGranted(BaseVoter::ADMIN) ) {
-                    return $subject->getDepartement()->getCompany() === $user->getDepartement()->getCompany();
-                }
+                return $this->security->isGranted(BaseVoter::SUPER_ADMIN);
                 break;
             case 'VIEW':
+                
                 if ( $this->security->isGranted(BaseVoter::ADMIN) ) {
                     return $subject->getDepartement()->getCompany() === $user->getDepartement()->getCompany();
                 }
@@ -61,10 +65,11 @@ class UserVoter extends Voter
                     return $user === $subject;
                 }
             case 'EDIT':
-                if ( $this->security->isGranted(BaseVoter::ADMIN) ) {
-                    return $subject->getDepartement()->getCompany() === $user->getDepartement()->getCompany();
-                }
+                return $this->security->isGranted(BaseVoter::SUPER_ADMIN);
                 break;
+            case 'DELETE':
+                 return $this->security->isGranted(BaseVoter::SUPER_ADMIN);
+                
         }
         return false;
     }

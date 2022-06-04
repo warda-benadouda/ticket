@@ -52,7 +52,6 @@ function AddCompany () {
                   <Input label="Description" name="description" />
                   <Submit
                       onClick={submitForm}
-                      onReset={() => navigate(-1)}
                       disabled={isSubmitting || errors.length}
                   />
             </Form>

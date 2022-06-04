@@ -27,6 +27,10 @@ class DepartementVoter extends Voter
         if (is_array($subject)){
             return count(BaseVoter::checkArrayInstances($subject, Departement::class)) === count($subject);
         }
+        if (!$subject instanceof Departement) {
+
+            return false;
+        }
        
         return $subject instanceof Departement;
     }
@@ -42,7 +46,7 @@ class DepartementVoter extends Voter
         
         switch ($attribute) {
             case 'LIST':
-                return $this->security->isGranted(BaseVoter::SUPER_ADMIN);
+                return $this->security->isGranted(BaseVoter::ADMIN);
                 break;
             case 'CREATE':
                 return $this->security->isGranted(BaseVoter::SUPER_ADMIN);
@@ -51,7 +55,7 @@ class DepartementVoter extends Voter
                 return $this->security->isGranted(BaseVoter::SUPER_ADMIN);
                 break;
             case 'VIEW':
-                return $subject === $user->getDepartement()->getCompany();
+                return $subject->getCompany() === $user->getDepartement()->getCompany();
                 break;
             
         }
