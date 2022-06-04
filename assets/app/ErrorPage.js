@@ -1,7 +1,6 @@
 import React from 'react'
 
 function ErrorPage() {
-    console.log("cliiiekd");
   return (
     <div className="d-flex flex-column flex-root">
     <div

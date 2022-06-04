@@ -10,7 +10,6 @@ import { login } from "../_redux/api";
 
 function Login() {
 
-  const user = useSelector((state) => state.auth.user, shallowEqual);
   const  dispatch = useDispatch();
   const navigate = useNavigate();
 

@@ -80,6 +80,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
 )]
 class Ticket
 {
+
+   
+    const STATE_PENDING = "0";
+    const STATE_IN_PROGRESS = "1";
+    const STATE_DONE = "2";
+
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]

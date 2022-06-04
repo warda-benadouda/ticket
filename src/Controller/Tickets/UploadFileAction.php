@@ -52,7 +52,7 @@ class UploadFileAction  extends DefaultController
                 }
 
                 $ticket->setTaskFile($newFilename);
-                $ticket->setState("2");
+                $ticket->setState(Ticket::STATE_DONE);
                 $ticket->setNotes($note);
                 $this->em->persist($ticket);
                 $this->em->flush();
