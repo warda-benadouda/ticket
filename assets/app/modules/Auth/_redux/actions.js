@@ -10,4 +10,5 @@ export const actions = {
         type: actionTypes.UserLoaded,
         payload: { user } 
     }),
+    logout: () => ({ type: actionTypes.Logout }),
 }

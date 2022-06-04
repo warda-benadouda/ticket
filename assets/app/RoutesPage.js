@@ -15,6 +15,7 @@ import CompanyEdit from './modules/Company/components/CompanyEdit';
 import DepartementEdit from './modules/Departement/components/DepartementEdit';
 import UserEdit from './modules/User/components/UserEdit';
 import DoneTasks from './modules/Ticket/pages/DoneTasks';
+import Logout from './modules/Auth/pages/Logout';
 
 
 
@@ -63,13 +64,12 @@ function RoutesPage() {
                     path="/finished-tasks"
                     element={<DoneTasks/>}
                   /> 
+                  <Route
+                    path="/logout"
+                    element={<Logout/>}
+                  /> 
 
-                <Route
-                  path="/logout"
-                  element={
-                  <Navigate to="/" replace />
-                }
-                /> 
+               
           </Route>
 
       </Routes>

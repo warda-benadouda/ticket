@@ -12,6 +12,7 @@ import  { saga  as ticketSaga} from "../app/modules/Ticket/_redux/saga";
 import  { saga  as CompanySaga} from "../app/modules/Company/_redux/saga";
 import  { saga  as DepartementSaga} from "../app/modules/Departement/_redux/saga.js";
 import  { saga  as UserSaga} from "../app/modules/User/_redux/saga.js";
+import { actionTypes } from "../app/modules/Auth/_redux/Actiontype";
 
 
 const appReducer = combineReducers({
@@ -24,10 +25,10 @@ const appReducer = combineReducers({
 
 export const rootReducer = (state, action) => {
 
-    // if (action.type === actionTypes.Logout) {
-    //   window.localStorage.clear();
-    //   return appReducer(undefined, action)
-    // }
+    if (action.type === actionTypes.Logout) {
+      window.localStorage.clear();
+      return appReducer(undefined, action)
+    }
 
     return appReducer(state, action)
   }
