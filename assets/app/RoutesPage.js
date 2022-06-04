@@ -26,6 +26,7 @@ function RoutesPage() {
 
           <Route path="*" element={<ErrorPage />} />
           <Route path="/" element={<Login/>} />
+          <Route path="/logout" element={<Logout/>} /> 
 
           <Route element={<Layout/>}> 
                   <Route
@@ -64,11 +65,6 @@ function RoutesPage() {
                     path="/finished-tasks"
                     element={<DoneTasks/>}
                   /> 
-                  <Route
-                    path="/logout"
-                    element={<Logout/>}
-                  /> 
-
                
           </Route>
 
