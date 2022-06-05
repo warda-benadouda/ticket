@@ -32,6 +32,15 @@ docker-compose exec php bin/console lexik:jwt:generate-keypair
 ```bash
 yarn install & yarn encore dev
 ```
+
+### IF 
+
+```bash
+ Unable to create the "cache" directory (/var/www/var/cache/dev) after executing composer install :
+ cd var 
+ sudo chown -R user ./
+```
+
 ### visit 
 
 ```bash
