@@ -37,4 +37,14 @@ yarn install & yarn encore dev
 ```bash
  check http://localhost:84
 ```
+### database
+
+```bash
+ super admin aacount :
+ 
+ email : warda.superadmin@gmail.com
+ password : 123456
+ 
+ ```
+
 
